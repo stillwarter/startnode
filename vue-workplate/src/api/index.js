@@ -13,3 +13,10 @@ export function getProcess() {
     method: "post",
   });
 }
+
+export function handlefile() {
+  return request({
+    url: "/handfile",
+    method: "post",
+  });
+}

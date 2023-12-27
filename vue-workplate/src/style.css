@@ -28,9 +28,14 @@ body {
   place-items: center;
 }
 
+div{
+  text-align: center;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  text-align: center;
 }
 
 button {
@@ -56,12 +61,11 @@ button:focus-visible {
   padding: 2em;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
+/* #app {
+  max-width: 1200px;
   padding: 2rem;
   text-align: center;
-}
+} */
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -74,4 +78,34 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  width: 6px;
+  background: rgba(#101F1C, 0.1);
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(144,147,153,.5);
+  background-clip: padding-box;
+  min-height: 28px;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+  transition: background-color .3s;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(144,147,153,.3);
 }

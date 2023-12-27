@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'catbite';
+  src: url("../assets/font/猫啃什锦黑.ttf");
+}
+
+/* 常用标签使用我喜欢的字体 */
+p,h1,span,div{
+  font-family: "catbite";
+}

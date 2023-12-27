@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { createRouter, createWebHistory,createWebHashHistory , RouteRecordRaw } from "vue-router";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -33,12 +33,24 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/baseinfo",
     name: "baseinfo",
-    component: () => import("../view/baseinfo/index.vue"),
+    component: () => import("../view/node/baseinfo/index.vue"),
   },
+  {
+    path: "/handfile",
+    name: "handfile",
+    component: () => import("../view/node/filehand/index.vue"),
+  },
+
+  /* log-日志 */
+  {
+    path: "/log",
+    name: "log",
+    component: () => import("../view/log/index.vue"),
+  }
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes,
 });
 

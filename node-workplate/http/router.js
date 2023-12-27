@@ -1,33 +1,57 @@
 import url from "url";
-// export const router = {
-//   handleRequest(req, response) {
-//     // 避免ico请求导致响应2次
-//     if (url.parse(req.url).path == "/favicon.ico") return;
-//     response.writeHead(200, {
-//       "Content-Type": "text/html",
-//     });
-//   },
-// };
+import { test } from "./router/handlefile.js";
+import { readMyLog, addMyLog } from "./router/mylog.js";
 
-const routers = [
-  {
-    path: "/",
-    name: "home",
+// 创建路由表
+let router = {
+  // 存储get请求的路由
+  get: {},
+  // 存储post请求的路由
+  post: {
+    "/baseinfo": JSON.stringify(process),
+    "/handfile": test,
+    "/mylog/readMyLog": readMyLog,
+    "/mylog/addMyLog": addMyLog,
   },
-  {
-    path: "/baseinfo",
-    name: "baseinfo",
-    end: JSON.stringify(process),
-  },
-];
+};
+
+// 添加路由的方法，method为请求方法，url为请求地址，callback为处理该请求的回调函数
+export function addRouter(method, url, callback) {
+  // 为便于处理，将method和url统一转换成小写
+  method = method.toLowerCase();
+  // url = url.toLowerCase();
+
+  // 将处理请求的回调函数，按方法名和地址储存到路由表中
+  router[method][url] = callback;
+}
+
+// 查找处理请求的回调函数的方法，method为请求方法，url为请求地址，返回处理路由的回调函数
+export function findRouter(method, url) {
+  // 为便于处理，将method和url统一转换成小写
+  method = method.toLowerCase();
+  // url = url.toLowerCase();
+
+  // 找到路由对应的回调函数，不存在则默认返回null
+  const callback = router[method][url] || null;
+  // console.log(method,url,router[method]['/mylog/readMyLog']);
+  // console.log(url);
+
+  // 将回调函数返回
+  return callback;
+}
 
 export function parseUrl(req) {
   let end = 0;
   for (const item of routers) {
     if (url.parse(req.url).path == item.path) {
-      item.end ? item.end : (item.end = 1);
-      end = item.end;
-      return end;
+      // 处理子路径
+      if (item.childpath) {
+        console.log("handle child");
+      } else {
+        item.end ? (item.end, console.log(typeof end)) : (item.end = 1);
+        end = item.end;
+        return end;
+      }
     }
   }
   return end;
