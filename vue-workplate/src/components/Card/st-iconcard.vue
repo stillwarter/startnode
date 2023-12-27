@@ -17,9 +17,12 @@ import { ref, onMounted } from "vue";
 const props = defineProps({
   position: String,
   icontag: String,
-  svgsize: Number,
+  svgsize: {
+    type: [Number, String],
+    default: 20,
+  },
   margin: {
-    type: Number,
+    type: [Number, String],
     default: 0,
   },
   pathname: {
@@ -90,11 +93,10 @@ const props = defineProps({
 
 p {
   margin: 2px;
- 
 }
 
-span{
- font-size: 12px;
+span {
+  font-size: 12px;
 }
 
 a {

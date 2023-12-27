@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 const props = defineProps({
-  svgsize: Number,
+  svgsize: [Number,String],
 });
 
 const svgbox = ref(null);

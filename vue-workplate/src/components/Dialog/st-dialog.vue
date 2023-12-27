@@ -30,7 +30,7 @@ const sure = () => {
           <slot></slot>
         </div>
 
-        <div class="footerbtn">
+        <div class="footerbtn mg-t20">
           <div class="btnsure flexcenter" @click="sure">确认</div>
           <div class="btncancel flexcenter" @click="close">取消</div>
         </div>

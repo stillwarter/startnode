@@ -23,6 +23,7 @@
   后续我们需要编辑我们的log文件，首先我们模拟这个请求
 
   然后我们准备几个tag和card 装载不同类别的日志记录
+  tag:疑问 思绪 收获 计划
 
   -->
 
@@ -50,7 +51,11 @@
       @sureDialog="postDialog"
       @closeDialog="closeDialog"
     >
-      <stInputTextarea label="标题" :value="titleval" />
+      <stInputTextarea class="mg-b10" label="标题" :value="titleval" />
+      <stInputTextarea class="mg-b10" label="概述" :value="ezcontent"  rows="4" />
+      
+      <div>some tag add</div>
+
     </stdialog>
   </div>
 </template>
@@ -67,6 +72,11 @@ import logbase from "@/testdata/logbase.json";
 
 import { readMyLog, addMyLog } from "@/api/log.js";
 
+/**
+ * 弹出框数据
+ */
+const titleval = ref("");
+const ezcontent=ref("")
 /**
  * 控制弹出框
  */
@@ -90,10 +100,6 @@ const closeDialog = () => {
   editdialog.value = false;
 };
 
-/**
- * 弹出框数据
- */
-const titleval = ref("");
 
 /**
  * 获取mylog数据

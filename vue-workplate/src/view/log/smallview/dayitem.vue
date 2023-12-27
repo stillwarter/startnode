@@ -14,14 +14,15 @@
         </div>
 
         <p class="date">{{ year }}-12-{{ day.day + 1 }}</p>
-        <!-- <p class="handleicon" @click="openEditItem(index, data)">edit</p> -->
+        <p class="handleicon" @click="openEditItem(index, data)">edit</p>
       </div>
     </div>
     <div class="logcontent">
       <!-- <p v-if="day.data">{{ JSON.parse(JSON.stringify(day.data)).yourlog }}</p> -->
-      {{ data?.yourlog }}
-
-      <!-- {{ JSON.parse(day.data) || "no log" }} -->
+      <p>
+        {{ data?.yourlog }}
+      </p>
+      <stLogQuestion :iconpath="questionicon" content="test" bordercolor="springgreen" />
     </div>
   </div>
 </template>
@@ -29,6 +30,8 @@
 <script setup>
 import { ref } from "vue";
 import stIcontag from "@/components/Tag/st-icontag.vue";
+import stLogQuestion from "@/components/Card/st-log-question.vue";
+import { questionicon } from "@/assets/svg/log/questionicon";
 const props = defineProps({
   index: Number,
   day: [Number, String, Object],
@@ -112,16 +115,20 @@ const openEditItem = (index, data) => {
     .handleicon {
       position: absolute;
       text-align: left;
-      top: 0;
       cursor: pointer;
     }
   }
   .logcontent {
     min-height: 400px;
+    max-height: 800px;
     text-align: left;
     font-size: 20px;
     position: relative;
+    overflow: auto;
     top: -36px;
+    div{
+      text-align: left;
+    }
   }
 }
 
