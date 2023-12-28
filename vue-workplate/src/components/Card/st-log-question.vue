@@ -25,6 +25,8 @@ const props = defineProps({
   display: flex;
   align-items: center;
   justify-content: space-between;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 .ani {

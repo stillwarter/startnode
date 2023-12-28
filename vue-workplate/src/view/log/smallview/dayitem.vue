@@ -4,7 +4,7 @@
       <div class="handicon"></div>
       <div style="position: sticky; top: 100px; padding-right: 40px;">
         <h2 class="daytitle">
-          {{ data?.title }}
+          {{ data.title }}
         </h2>
 
         <div class="iconcountbox">
@@ -20,9 +20,9 @@
     <div class="logcontent">
       <!-- <p v-if="day.data">{{ JSON.parse(JSON.stringify(day.data)).yourlog }}</p> -->
       <p>
-        {{ data?.yourlog }}
+        {{ data.yourlog }}
       </p>
-      <stLogQuestion :iconpath="questionicon" content="test" bordercolor="springgreen" />
+      <stLogQuestion :iconpath="questionicon" content="testtttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt" bordercolor="springgreen" />
     </div>
   </div>
 </template>

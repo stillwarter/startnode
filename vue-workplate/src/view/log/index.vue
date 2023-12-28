@@ -52,10 +52,17 @@
       @closeDialog="closeDialog"
     >
       <stInputTextarea class="mg-b10" label="标题" :value="titleval" />
-      <stInputTextarea class="mg-b10" label="概述" :value="ezcontent"  rows="4" />
-      
-      <div>some tag add</div>
+      <stInputTextarea
+        class="mg-b10"
+        label="概述"
+        :value="ezcontent"
+        rows="4"
+      />
 
+      <div>
+        some tag add
+        <stIconButton />
+      </div>
     </stdialog>
   </div>
 </template>
@@ -64,6 +71,7 @@
 import { ref } from "vue";
 import dayitem from "./smallview/dayitem.vue";
 import stdialog from "@/components/Dialog/st-dialog.vue";
+import stIconButton from "@/components/Button/st-icon-button.vue";
 import stInputTextarea from "../../components/Input/st-input-textarea.vue";
 
 import { getPassMouth } from "@/tool/date/passmouth";
@@ -76,7 +84,7 @@ import { readMyLog, addMyLog } from "@/api/log.js";
  * 弹出框数据
  */
 const titleval = ref("");
-const ezcontent=ref("")
+const ezcontent = ref("");
 /**
  * 控制弹出框
  */
@@ -99,7 +107,6 @@ const postDialog = () => {
 const closeDialog = () => {
   editdialog.value = false;
 };
-
 
 /**
  * 获取mylog数据
