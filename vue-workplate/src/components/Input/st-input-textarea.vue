@@ -1,18 +1,36 @@
 <script setup>
+import { ref, watch } from "vue";
+const emit = defineEmits(["update:contentvalue"]);
 const props = defineProps({
   label: {
     type: String,
     default: "输入标签",
   },
-  value: {
-    type: [String, Object, Array],
+  contentvalue: {
+    type: [String, Object, Array, Number],
   },
-  width:Number,
-  rows:{
-    type:[Number,String],
-    default:2
-  }
+  width: Number,
+  rows: {
+    type: [Number, String],
+    default: 2,
+  },
 });
+
+const contentvalue = ref(props.contentvalue);
+//因为prop中的值非动态响应，所以需要通过watch监听，immediate 初始化时接收父组件中的传值
+watch(
+  () => props.contentvalue,
+  (newval, oldval) => {
+    contentvalue.value = props.contentvalue;
+    console.log(newval);
+  }
+);
+
+// 发送事件
+const contentvalueChange = () => {
+  console.log(contentvalue.value);
+  emit("update:contentvalue", contentvalue.value);
+};
 </script>
 
 <template>
@@ -22,15 +40,22 @@ const props = defineProps({
       class="mo-textarea"
       id="stinput"
       :rows="rows"
-      v-model="value.title"
+      v-model="contentvalue"
       style="width: 80%;"
+      @change="contentvalueChange"
     ></textarea>
+    <!-- <textarea
+      class="mo-textarea"
+      id="stinput"
+      :rows="rows"
+      v-model="cc"
+      style="width: 80%;"
+    ></textarea> -->
   </div>
 </template>
 
 <style lang="less" scoped>
-
-.stinput{
+.stinput {
   display: flex;
   justify-content: center;
   align-items: center;

@@ -47,26 +47,45 @@
     <stdialog
       title="编辑我的日志"
       :show="editdialog"
-      :data="logitem"
+      :data="dialoglogitem"
       @sureDialog="postDialog"
       @closeDialog="closeDialog"
     >
-      <stInputTextarea class="mg-b10" label="标题" :value="titleval" />
+      <stInputTextarea
+        class="mg-b10"
+        label="标题"
+        v-model:contentvalue="dialoglogitem.title"
+      />
       <stInputTextarea
         class="mg-b10"
         label="概述"
-        :value="ezcontent"
+        v-model:contentvalue="dialoglogitem.yourlog"
         rows="4"
       />
+      <!-- <stInputTextarea
+        class="mg-b10"
+        label="概述"
+         v-model:contentvalue="dialoglogitem.yourlog"
+        :contentvalue="dialoglogitem.yourlog"
+        rows="4"
+      /> -->
 
       <div class="quesitonalist">
-        <div v-for="(item, index) in logitem.qustinolist" :key="index">
-          {{ item }}
+        <div v-for="(item, index) in dialoglogitem.qustinolist" :key="index">
+          <stInputTextarea
+            class="mg-b10"
+            :label="'疑问' + (index + 1)"
+            v-model:contentvalue="dialoglogitem.qustinolist[index]"
+          />
         </div>
       </div>
 
       <div class="addtagbox">
-        <stIconButton cnt="疑问 +" backcolor="red" @click="addQustinoListDialog" />
+        <stIconButton
+          cnt="疑问 +"
+          backcolor="red"
+          @click="addQustinoListDialog"
+        />
         <stIconButton />
         <stIconButton />
       </div>
@@ -75,7 +94,7 @@
 </template>
 
 <script setup>
-import { ref ,onMounted} from "vue";
+import { ref, onMounted } from "vue";
 import dayitem from "./smallview/dayitem.vue";
 import stdialog from "@/components/Dialog/st-dialog.vue";
 import stIconButton from "@/components/Button/st-icon-button.vue";
@@ -90,28 +109,30 @@ import { readMyLog, addMyLog } from "@/api/log.js";
 /**
  * 弹出框数据
  */
-const titleval = ref("");
-const ezcontent = ref("");
-const quesitonalistdialog = ref([]);
+// const titleval = ref("");
+// const ezcontent = ref("");
+// const quesitonalistdialog = ref([]);
 /**
  * 控制弹出框
  */
 const editdialog = ref(false);
-const logitem = ref({});
+const dialoglogitem = ref({});
 const dialogitemindex = ref(0);
 const openEdit = (val1, val2) => {
-  logitem.value = val2;
+  dialoglogitem.value = val2;
   dialogitemindex.value = val1;
   editdialog.value = true;
-  titleval.value = val2;
+  // titleval.value = val2;
 };
 /*
-* 弹出栏增加question编辑栏
-*/
-const addQustinoListDialog=()=>{
-  logitem.value.qustinolist.push({})
-}
-
+ * 弹出栏增加question编辑栏
+ */
+const addQustinoListDialog = () => {
+  const list = dialoglogitem.value.qustinolist;
+  if (list[list.length - 1]) {
+    dialoglogitem.value.qustinolist.push(0);
+  }
+};
 
 /**
  * 增加mylog数据(test)
@@ -120,7 +141,9 @@ const postDialog = () => {
   addMyLog({
     index: dialogitemindex.value,
     logcontent: {
-      title: titleval.value.title,
+      title: dialoglogitem.value.title,
+      yourlog: dialoglogitem.value.yourlog,
+      qustinolist: dialoglogitem.value.qustinolist,
     },
   }).then((res) => {});
 };
@@ -159,9 +182,9 @@ function getReseveArray(aimnum, startnum, resveflag) {
 const resday = ref(getReseveArray(mouthdate.value.day, 0, 1));
 
 /* 运行读取数据 */
-onMounted(()=>{
-  getMyLog()
-})
+onMounted(() => {
+  getMyLog();
+});
 </script>
 
 <style lang="less" scoped>
