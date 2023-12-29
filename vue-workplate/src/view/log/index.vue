@@ -59,8 +59,15 @@
         rows="4"
       />
 
-      <div>
-        some tag add
+      <div class="quesitonalist">
+        <div v-for="(item, index) in logitem.qustinolist" :key="index">
+          {{ item }}
+        </div>
+      </div>
+
+      <div class="addtagbox">
+        <stIconButton cnt="疑问 +" backcolor="red" @click="addQustinoListDialog" />
+        <stIconButton />
         <stIconButton />
       </div>
     </stdialog>
@@ -68,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref ,onMounted} from "vue";
 import dayitem from "./smallview/dayitem.vue";
 import stdialog from "@/components/Dialog/st-dialog.vue";
 import stIconButton from "@/components/Button/st-icon-button.vue";
@@ -85,6 +92,7 @@ import { readMyLog, addMyLog } from "@/api/log.js";
  */
 const titleval = ref("");
 const ezcontent = ref("");
+const quesitonalistdialog = ref([]);
 /**
  * 控制弹出框
  */
@@ -92,10 +100,22 @@ const editdialog = ref(false);
 const logitem = ref({});
 const dialogitemindex = ref(0);
 const openEdit = (val1, val2) => {
+  logitem.value = val2;
   dialogitemindex.value = val1;
   editdialog.value = true;
   titleval.value = val2;
 };
+/*
+* 弹出栏增加question编辑栏
+*/
+const addQustinoListDialog=()=>{
+  logitem.value.qustinolist.push({})
+}
+
+
+/**
+ * 增加mylog数据(test)
+ */
 const postDialog = () => {
   addMyLog({
     index: dialogitemindex.value,
@@ -104,6 +124,7 @@ const postDialog = () => {
     },
   }).then((res) => {});
 };
+
 const closeDialog = () => {
   editdialog.value = false;
 };
@@ -112,20 +133,11 @@ const closeDialog = () => {
  * 获取mylog数据
  */
 let loglist = ref(0);
-readMyLog().then((res) => {
-  loglist.value = res.data.data.loglist;
-});
-
-/**
- * 增加mylog数据(test)
- */
-function setMyLog(data) {}
-// addMyLog({
-//   index: 0,
-//   logcontent: {
-//     title: "cescsa",
-//   },
-// }).then((res) => {});
+function getMyLog() {
+  readMyLog().then((res) => {
+    loglist.value = res.data.data.loglist;
+  });
+}
 
 const mouthdate = ref(getPassMouth());
 /**
@@ -145,6 +157,11 @@ function getReseveArray(aimnum, startnum, resveflag) {
 }
 
 const resday = ref(getReseveArray(mouthdate.value.day, 0, 1));
+
+/* 运行读取数据 */
+onMounted(()=>{
+  getMyLog()
+})
 </script>
 
 <style lang="less" scoped>
@@ -157,5 +174,10 @@ const resday = ref(getReseveArray(mouthdate.value.day, 0, 1));
   left: 20px;
   bottom: 20px;
   cursor: pointer;
+}
+
+.addtagbox {
+  display: flex;
+  justify-content: center;
 }
 </style>

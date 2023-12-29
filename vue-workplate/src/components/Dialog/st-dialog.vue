@@ -4,7 +4,12 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  data: [Object, Array],
+  data: {
+    type:[Object, Array],
+    default:()=>{
+      return {}
+    }
+  },
   title: {
     type: String,
     default: "弹框标题",
@@ -25,7 +30,6 @@ const sure = () => {
     <div class="dialogmask flexcenter" v-show="show">
       <div class="mianbox">
         <h2 class="mg-t0">{{ title }}</h2>
-
         <div class="editbox">
           <slot></slot>
         </div>
@@ -51,7 +55,8 @@ const sure = () => {
 
 .mianbox {
   width: 600px;
-  min-height: 30px;
+  max-height: 800px;
+  overflow: auto;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   box-shadow: 3px 3px 8px 1px rgba(203, 203, 203, 0.79);

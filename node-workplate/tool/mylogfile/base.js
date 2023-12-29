@@ -47,6 +47,7 @@ export function newLogFileBaseJson(yearNumber) {
     demobj.loglist.push({
       title: "今天还啥都没有记录哟",
       yourlog: "这是一条懒猫，啥也没写",
+      qustinolist: [],
     });
   }
 
