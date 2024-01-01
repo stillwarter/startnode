@@ -6,31 +6,77 @@
         <h2 class="daytitle">
           {{ data?.title }}
         </h2>
-
         <div class="iconcountbox">
-          <stIcontag>
-            <p style="position: absolute; right: 10px;">10</p>
+          <stIcontag
+            icontag="疑问"
+            class="mg-b10"
+            :backcolor="['#ee9ca7', '#ffdde1']"
+            :iconpath="questionicon"
+          >
+            <p style="position: absolute; right: 10px;">
+              {{ data?.qustinolist.length }}
+            </p>
           </stIcontag>
 
-          <stIcontag>
-            <p style="position: absolute; right: 10px;">10</p>
+          <stIcontag
+            icontag="收获"
+            class="mg-b10"
+            :backcolor="['#2980B9', '#6DD5FA', '#005AA7']"
+            :iconpath="collecticon"
+          >
+            <p style="position: absolute; right: 10px;">
+              {{ data?.collectionlist.length }}
+            </p>
           </stIcontag>
 
-          <stIcontag>
-            <p style="position: absolute; right: 10px;">10</p>
+          <stIcontag
+            icontag="想法"
+            :backcolor="['#a8ff78', '#78ffd6']"
+            class="mg-b10"
+            :iconpath="ideaicon"
+          >
+            <p style="position: absolute; right: 10px;">
+              {{ data?.idealist.length }}
+            </p>
           </stIcontag>
         </div>
 
-        <p class="date">{{ year }}-12-{{ day.day + 1 }}</p>
-        <p class="handleicon" @click="openEditItem(index, data)">edit</p>
+        <p class="date">
+          {{ year }} - {{ day.mouth < 10 ? "0" + day.mouth : day.mouth }} -
+          {{ day.day + 1 < 10 ? "0" + (day.day + 1) : day.day + 1 }}
+        </p>
+        <div class="handleicon" @click="openEditItem(index, data)">
+          <stSvg svgsize="20" v-html="editicon" />
+        </div>
       </div>
     </div>
     <div class="logcontent">
-      <!-- <p v-if="day.data">{{ JSON.parse(JSON.stringify(day.data)).yourlog }}</p> -->
-      <p>
+      <p style="white-space: pre-line">
         {{ data?.yourlog }}
       </p>
-      <stLogQuestion :iconpath="questionicon" content="test" bordercolor="springgreen" />
+      <div v-for="(item, index) in data?.qustinolist" :key="index">
+        <stLogQuestion
+          :iconpath="questionicon"
+          :content="item"
+          bordercolor="#ffdde1"
+        />
+      </div>
+
+      <div v-for="(item, index) in data?.collectionlist" :key="index">
+        <stLogQuestion
+          :iconpath="collecticon"
+          :content="item"
+          bordercolor="#6dd5ed"
+        />
+      </div>
+
+      <div v-for="(item, index) in data?.idealist" :key="index">
+        <stLogQuestion
+          :iconpath="ideaicon"
+          :content="item"
+          bordercolor="#78ffd6"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -38,8 +84,12 @@
 <script setup>
 import { ref } from "vue";
 import stIcontag from "@/components/Tag/st-icontag.vue";
+import stSvg from "@/components/SVG/st-svg.vue";
 import stLogQuestion from "@/components/Card/st-log-question.vue";
 import { questionicon } from "@/assets/svg/log/questionicon";
+import { collecticon } from "@/assets/svg/log/collecticon";
+import { ideaicon } from "@/assets/svg/log/ideaicon";
+import { editicon } from "@/assets/svg/log/editicon";
 const props = defineProps({
   index: Number,
   day: [Number, String, Object],
@@ -106,7 +156,7 @@ const openEditItem = (index, data) => {
       border: 1px solid #000;
     }
     .daytitle {
-      max-width: 50%;
+      max-width: 90%;
       display: flex;
       box-sizing: border-box;
       text-align: left;
@@ -128,13 +178,13 @@ const openEditItem = (index, data) => {
   }
   .logcontent {
     min-height: 400px;
-    max-height: 800px;
+    max-height: calc(100vh - 300px);
     text-align: left;
     font-size: 20px;
     position: relative;
     overflow: auto;
     top: -36px;
-    div{
+    div {
       text-align: left;
     }
   }

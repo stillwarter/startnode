@@ -1,6 +1,7 @@
 <template>
   <div class="logquestionbox mg-t20" :style="'border-color:' + bordercolor">
-    {{ content }}
+    <!-- {{ content }} -->
+    <span style="white-space: pre-line;" v-html="content"></span>
     <stSvg class="ani" svgsize="50" v-html="iconpath"></stSvg>
   </div>
 </template>
@@ -21,12 +22,13 @@ const props = defineProps({
   padding: 10px;
   border-left: 10px solid;
   border-radius: 10px;
-  background: #f5f5f5;
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   word-wrap: break-word;
   word-break: break-all;
+  font-size: 16px;
 }
 
 .ani {

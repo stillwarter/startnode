@@ -4,6 +4,10 @@
   align-items: center;
 }
 
+.mg-0{
+  margin: 0;
+}
+
 .mg-t0{
   margin-top: 0px;
 }

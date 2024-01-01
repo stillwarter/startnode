@@ -9,7 +9,10 @@ const props = defineProps({
   contentvalue: {
     type: [String, Object, Array, Number],
   },
-  width: Number,
+  width: {
+    type: [Number, String],
+    default: 100,
+  },
   rows: {
     type: [Number, String],
     default: 2,
@@ -22,42 +25,37 @@ watch(
   () => props.contentvalue,
   (newval, oldval) => {
     contentvalue.value = props.contentvalue;
-    console.log(newval);
   }
 );
 
 // 发送事件
 const contentvalueChange = () => {
-  console.log(contentvalue.value);
   emit("update:contentvalue", contentvalue.value);
 };
 </script>
 
 <template>
   <div class="stinput">
-    <label class="mg-r10" for="stinput">{{ label }}:</label>
+    <label style="flex-shrink: 0;" class="mg-r10" for="stinput"
+      >{{ label }}:</label
+    >
     <textarea
       class="mo-textarea"
       id="stinput"
       :rows="rows"
       v-model="contentvalue"
-      style="width: 80%;"
+      :style="'width:' + width + '%'"
       @change="contentvalueChange"
     ></textarea>
-    <!-- <textarea
-      class="mo-textarea"
-      id="stinput"
-      :rows="rows"
-      v-model="cc"
-      style="width: 80%;"
-    ></textarea> -->
+    <slot></slot>
   </div>
 </template>
 
 <style lang="less" scoped>
 .stinput {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 

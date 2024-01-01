@@ -62,32 +62,67 @@
         v-model:contentvalue="dialoglogitem.yourlog"
         rows="4"
       />
-      <!-- <stInputTextarea
-        class="mg-b10"
-        label="概述"
-         v-model:contentvalue="dialoglogitem.yourlog"
-        :contentvalue="dialoglogitem.yourlog"
-        rows="4"
-      /> -->
-
       <div class="quesitonalist">
         <div v-for="(item, index) in dialoglogitem.qustinolist" :key="index">
           <stInputTextarea
             class="mg-b10"
+            width="100"
             :label="'疑问' + (index + 1)"
             v-model:contentvalue="dialoglogitem.qustinolist[index]"
-          />
+          >
+            <div class="listhand">
+              <p @click="delTagList(index, 1)">删除</p>
+            </div>
+          </stInputTextarea>
+        </div>
+      </div>
+
+      <div class="quesitonalist">
+        <div v-for="(item, index) in dialoglogitem.collectionlist" :key="index">
+          <stInputTextarea
+            class="mg-b10"
+            width="100"
+            :label="'收集' + (index + 1)"
+            v-model:contentvalue="dialoglogitem.collectionlist[index]"
+          >
+            <div class="listhand">
+              <p @click="delTagList(index, 2)">删除</p>
+            </div>
+          </stInputTextarea>
+        </div>
+      </div>
+
+      <div class="quesitonalist">
+        <div v-for="(item, index) in dialoglogitem.idealist" :key="index">
+          <stInputTextarea
+            class="mg-b10"
+            width="100"
+            :label="'想法' + (index + 1)"
+            v-model:contentvalue="dialoglogitem.idealist[index]"
+          >
+            <div class="listhand">
+              <p @click="delTagList(index, 3)">删除</p>
+            </div>
+          </stInputTextarea>
         </div>
       </div>
 
       <div class="addtagbox">
         <stIconButton
           cnt="疑问 +"
-          backcolor="red"
-          @click="addQustinoListDialog"
+          backcolor="#ffdde1"
+          @click="addListDialog(1)"
         />
-        <stIconButton />
-        <stIconButton />
+        <stIconButton
+          cnt="收获 +"
+          backcolor="#6dd5ed"
+          @click="addListDialog(2)"
+        />
+        <stIconButton
+          cnt="想法 +"
+          backcolor="#78ffd6"
+          @click="addListDialog(3)"
+        />
       </div>
     </stdialog>
   </div>
@@ -98,12 +133,9 @@ import { ref, onMounted } from "vue";
 import dayitem from "./smallview/dayitem.vue";
 import stdialog from "@/components/Dialog/st-dialog.vue";
 import stIconButton from "@/components/Button/st-icon-button.vue";
-import stInputTextarea from "../../components/Input/st-input-textarea.vue";
-
+import stInputTextarea from "@/components/Input/st-input-textarea.vue";
+import { showMessage } from "@/tool/message";
 import { getPassMouth } from "@/tool/date/passmouth";
-
-import logbase from "@/testdata/logbase.json";
-
 import { readMyLog, addMyLog } from "@/api/log.js";
 
 /**
@@ -127,10 +159,71 @@ const openEdit = (val1, val2) => {
 /*
  * 弹出栏增加question编辑栏
  */
-const addQustinoListDialog = () => {
-  const list = dialoglogitem.value.qustinolist;
-  if (list[list.length - 1]) {
-    dialoglogitem.value.qustinolist.push(0);
+const addListDialog = (type) => {
+  switch (type) {
+    case 1:
+      const qustinolist = dialoglogitem.value.qustinolist;
+      if (
+        qustinolist[qustinolist.length - 1] &&
+        qustinolist[qustinolist.length - 1] != "请输入疑问tag"
+      ) {
+        dialoglogitem.value.qustinolist.push("请输入疑问tag");
+      } else if (!qustinolist.length) {
+        dialoglogitem.value.qustinolist.push("请输入疑问tag");
+      } else {
+        showMessage("请先输入tag内容", "err");
+      }
+      break;
+    case 2:
+      let collectionlist = dialoglogitem.value.collectionlist;
+      if (
+        collectionlist[collectionlist.length - 1] &&
+        collectionlist[collectionlist.length - 1] != "请输入收获tag"
+      ) {
+        dialoglogitem.value.collectionlist.push("请输入收获tag");
+      } else if (!collectionlist.length) {
+        dialoglogitem.value.collectionlist.push("请输入收获tag");
+      } else {
+        showMessage("请先输入tag内容", "err");
+      }
+      break;
+    case 3:
+      let idealist = dialoglogitem.value.idealist;
+      if (
+        idealist[idealist.length - 1] &&
+        idealist[idealist.length - 1] != "请输入想法tag"
+      ) {
+        dialoglogitem.value.idealist.push("请输入想法tag");
+      } else if (!idealist.length) {
+        dialoglogitem.value.idealist.push("请输入想法tag");
+      } else {
+        showMessage("请先输入tag内容", "err");
+      }
+      break;
+
+    default:
+      break;
+  }
+};
+/**
+ * 删除tag编辑栏
+ */
+const delTagList = (index, type) => {
+  switch (type) {
+    case 1:
+      dialoglogitem.value.qustinolist.splice(index, index + 1);
+      postDialog();
+      break;
+    case 2:
+      dialoglogitem.value.collectionlist.splice(index, index + 1);
+      postDialog();
+      break;
+    case 3:
+      dialoglogitem.value.idealist.splice(index, index + 1);
+      postDialog();
+      break;
+    default:
+      break;
   }
 };
 
@@ -138,48 +231,99 @@ const addQustinoListDialog = () => {
  * 增加mylog数据(test)
  */
 const postDialog = () => {
-  addMyLog({
-    index: dialogitemindex.value,
-    logcontent: {
-      title: dialoglogitem.value.title,
-      yourlog: dialoglogitem.value.yourlog,
-      qustinolist: dialoglogitem.value.qustinolist,
-    },
-  }).then((res) => {});
+  const pass = judgePostParmas();
+  if (pass) {
+    addMyLog({
+      index: dialogitemindex.value,
+      logcontent: {
+        title: dialoglogitem.value.title,
+        yourlog: dialoglogitem.value.yourlog,
+        qustinolist: dialoglogitem.value.qustinolist,
+        collectionlist: dialoglogitem.value.collectionlist,
+        idealist: dialoglogitem.value.idealist,
+      },
+    }).then((res) => {
+      if (res.data.success) {
+        showMessage("日记记录成功！");
+      }
+      closeDialog();
+    });
+  } else {
+    showMessage("请先输入tag内容", "err");
+  }
 };
 
+/**
+ * 增加mylog数据前手动判断一下
+ */
+const judgePostParmas = () => {
+  const qustinolist = dialoglogitem.value.qustinolist;
+  const collectionlist = dialoglogitem.value.collectionlist;
+  const idealist = dialoglogitem.value.idealist;
+  if (
+    qustinolist.slice(-1)[0] == "请输入疑问tag" ||
+    collectionlist.slice(-1)[0] == "请输入收获tag" ||
+    idealist.slice(-1)[0] == "请输入想法tag"
+  ) {
+    return 0;
+  } else {
+    return 1;
+  }
+};
+
+/**
+ * 关闭弹框
+ */
 const closeDialog = () => {
   editdialog.value = false;
+
+  // 清理未写内容的情况
+  const qustinolist = dialoglogitem.value.qustinolist;
+  const collectionlist = dialoglogitem.value.collectionlist;
+  const idealist = dialoglogitem.value.idealist;
+  if (qustinolist[qustinolist.length - 1] == "请输入疑问tag") {
+    qustinolist.pop();
+  }
+  if (collectionlist[collectionlist.length - 1] == "请输入收获tag") {
+    collectionlist.pop();
+  }
+  if (idealist[idealist.length - 1] == "请输入想法tag") {
+    idealist.pop();
+  }
 };
 
 /**
  * 获取mylog数据
  */
 let loglist = ref(0);
+let resday = ref(0);
 function getMyLog() {
   readMyLog().then((res) => {
     loglist.value = res.data.data.loglist;
+    resday.value = getReseveArray(mouthdate.value.day, 0, 1);
   });
 }
 
+/**
+ * 根据返回的数据生成列表
+ */
 const mouthdate = ref(getPassMouth());
+console.log(mouthdate.value);
 /**
  * 天数反序并混入json数据
  */
 function getReseveArray(aimnum, startnum, resveflag) {
   const arr = [];
   for (let i = startnum; i < aimnum; i++) {
-    if (logbase.loglist[i]) {
-      arr.push({ day: i, data: logbase.loglist[i] });
-    } else {
-      arr.push({ day: i });
-    }
+    arr.push({
+      day: i,
+      mouth: mouthdate.value.mouth,
+      data: loglist.value[i],
+    });
   }
   resveflag ? arr.reverse() : arr;
   return arr;
 }
-
-const resday = ref(getReseveArray(mouthdate.value.day, 0, 1));
 
 /* 运行读取数据 */
 onMounted(() => {
@@ -202,5 +346,13 @@ onMounted(() => {
 .addtagbox {
   display: flex;
   justify-content: center;
+}
+.quesitonalist {
+  width: 100%;
+  .listhand {
+    margin-left: 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+  }
 }
 </style>

@@ -5,10 +5,10 @@ const props = defineProps({
     default: false,
   },
   data: {
-    type:[Object, Array],
-    default:()=>{
-      return {}
-    }
+    type: [Object, Array],
+    default: () => {
+      return {};
+    },
   },
   title: {
     type: String,
@@ -54,13 +54,24 @@ const sure = () => {
 }
 
 .mianbox {
-  width: 600px;
+  min-width: 600px;
   max-height: 800px;
   overflow: auto;
   background: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   box-shadow: 3px 3px 8px 1px rgba(203, 203, 203, 0.79);
-  padding: 24px;
+  padding: 24px 36px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .editbox {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .footerbtn {
     width: 100%;
     display: flex;

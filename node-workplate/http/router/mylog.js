@@ -11,13 +11,13 @@ import {
  * 读取时候，需要生成，本月的log json数据
  *  - 首先检测当年年份 是否有今年的年份目录文件
  *    存在就继续下一步，不存在就创建
- *  - 然后在该目录下创建对应的demo文件
+ *  - 然后在该目录下创建对应的demo文件 （已经改为生成固定格式的文件)
  *    不同于创建目录，重复创建会覆盖原文件内容，所以创建前需要先判断该文件是否存在
  *    由于每月的天数可能不一样，所以我们的json数据文件最好是动态生成的
  *  - 有了原数据，我们就需要在这个数据上进行更改
  *    也就是说需要处理获得的数据
  *    由于生成的数据量较少，所以我们可以直接去写入；
- *    而处理编辑我自己的log数据，最好还是用stream写入，减少数据传递服务内存的损耗
+ *    而处理编辑我自己的log数据，最好还是用stream写入，减少数据传递服务内存的损耗?
  */
 export function readMyLog(res, query, post, files) {
   let logpath = "";
@@ -47,6 +47,8 @@ export function readMyLog(res, query, post, files) {
       success: true,
       message: "数据已收到",
       data: JSON.parse(logdata),
+      year: yearNumber,
+      month: new Date().getMonth() + 1,
     };
 
     res.end(JSON.stringify(response));

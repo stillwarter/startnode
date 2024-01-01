@@ -26,6 +26,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  background: #f3f3f3;
 }
 
 div{
@@ -66,6 +67,10 @@ button:focus-visible {
   padding: 2rem;
   text-align: center;
 } */
+
+#app{
+  min-height: 100vh;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

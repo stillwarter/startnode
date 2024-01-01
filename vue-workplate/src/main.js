@@ -7,4 +7,8 @@ import router from "./router";
 import "./style/font.css";
 // 常用类
 import "./style/useful.css";
-createApp(App).use(router).mount("#app");
+// 全部css变量
+import "./style/color.css";
+const app = createApp(App);
+// app.config.globalProperties.$Message='message';
+app.use(router).mount("#app");
