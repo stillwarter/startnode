@@ -36,6 +36,7 @@ const setDark = () => {
   height: 24px;
   text-align: left;
   padding: 2px 10px;
+  box-sizing: border-box;
 }
 
 .darkmoel {
@@ -44,7 +45,6 @@ const setDark = () => {
 
 .stsvg {
   cursor: pointer;
-  margin-top: 2px;
   width: 30px;
 }
 

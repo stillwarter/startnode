@@ -299,8 +299,10 @@ let loglist = ref(0);
 let resday = ref(0);
 function getMyLog() {
   readMyLog().then((res) => {
-    loglist.value = res.data.data.loglist;
     resday.value = getReseveArray(mouthdate.value.day, 0, 1);
+    loglist.value = res.data.data.loglist.splice(0, resday.value.length).reverse();
+
+    console.log(loglist.value);
   });
 }
 
