@@ -25,7 +25,7 @@ const setDark = () => {
 <template>
   <div class="workhead">
     <!-- <p class="mg-0 darkmoel" @click="setDark">黑夜模式</p> -->
-    <stSvg class="stsvg" svgsize="20" v-html="nighticon" @click="setDark" />
+    <stSvg class="stsvg" svgsize="18" v-html="nighticon" @click="setDark" />
   </div>
 </template>
 
@@ -46,6 +46,7 @@ const setDark = () => {
 .stsvg {
   cursor: pointer;
   width: 30px;
+  margin-top: 1px;
 }
 
 

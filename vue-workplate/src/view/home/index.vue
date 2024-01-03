@@ -26,7 +26,7 @@ const iconsize = ref(50);
         <stSvg :svgsize="iconsize" v-html="compicon"></stSvg>
       </stIconcard>
 
-      <stIconcard position="bottom" icontag="日志" pathname="log">
+      <stIconcard position="bottom" icontag="日报" pathname="log">
         <stSvg :svgsize="iconsize" v-html="logicon"></stSvg>
       </stIconcard>
 
@@ -45,6 +45,20 @@ const iconsize = ref(50);
       </stIconcard>
 
        <stIconcard position="bottom" icontag="学习" pathname="log">
+        <stSvg :svgsize="iconsize" v-html="stuicon"></stSvg>
+      </stIconcard>
+    </div>
+
+    <div class="typewordbox mg-t30">
+      <stIconcard position="bottom" icontag="游戏" pathname="log">
+        <stSvg :svgsize="iconsize" v-html="gameicon"></stSvg>
+      </stIconcard>
+
+      <stIconcard position="bottom" icontag="动画库" pathname="log">
+        <stSvg :svgsize="iconsize" v-html="anicon"></stSvg>
+      </stIconcard>
+
+       <stIconcard position="bottom" icontag="计划" pathname="log">
         <stSvg :svgsize="iconsize" v-html="stuicon"></stSvg>
       </stIconcard>
     </div>

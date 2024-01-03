@@ -36,7 +36,7 @@
         <dayitem
           :index="index"
           :day="item"
-          :data="loglist[index]"
+          :data="loglist.slice(0,3).reverse()[index]"
           @openEdit="openEdit"
         ></dayitem>
       </div>
@@ -212,15 +212,12 @@ const delTagList = (index, type) => {
   switch (type) {
     case 1:
       dialoglogitem.value.qustinolist.splice(index, index + 1);
-      postDialog();
       break;
     case 2:
       dialoglogitem.value.collectionlist.splice(index, index + 1);
-      postDialog();
       break;
     case 3:
       dialoglogitem.value.idealist.splice(index, index + 1);
-      postDialog();
       break;
     default:
       break;
@@ -300,9 +297,8 @@ let resday = ref(0);
 function getMyLog() {
   readMyLog().then((res) => {
     resday.value = getReseveArray(mouthdate.value.day, 0, 1);
-    loglist.value = res.data.data.loglist.splice(0, resday.value.length).reverse();
-
-    console.log(loglist.value);
+    // loglist.value = res.data.data.loglist.splice(0, resday.value.length).reverse();
+    loglist.value = res.data.data.loglist
   });
 }
 

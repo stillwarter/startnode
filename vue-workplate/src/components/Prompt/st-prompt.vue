@@ -40,7 +40,7 @@ onMounted(() => {
 
 <style lang="less" scoped>
 .tip {
-  position: absolute;
+  position: fixed;
   z-index: 100;
   top: 30px;
   left: 50%;
