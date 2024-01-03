@@ -1,6 +1,6 @@
 import fs from "node:fs";
-
-import { checkFilePresence } from "../../tool/file/base.js";
+import path from "node:path";
+import { checkFilePresence, checkFolderPath } from "../../tool/file/base.js";
 
 /**
  * 增加计划书
@@ -9,8 +9,21 @@ import { checkFilePresence } from "../../tool/file/base.js";
  *        需要做一个文件存在判断，一个文件新增，一个文件覆盖
  */
 export function addMyPlan(res, query, post, filesr, prames) {
-    // console.log("get prames:", prames);
+  const { update, data } = prames;
+  const updatelist = update.split("-").splice(0, 2);
+  // 文件夹检测
+  const folderpath = updatelist[0];
+  // 年份文件夹和月份文件夹
+  const ypath = process.cwd() + "/static/myplan/" + updatelist[0];
+  const mpath = ypath + "/" + updatelist[1];
+  // console.log(ypath,mpath);
+
+  const end = checkFolderPath(ypath);
+  console.log(end);
+  // console.log(end);
+  // checkFilePresence();
+  // console.log("get prames:", prames);
   //   console.log(JSON.parse(prames));
   //   const a=checkFilePresence()
-  console.log(process.cwd());
+  // console.log(process.cwd());
 }

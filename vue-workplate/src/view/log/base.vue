@@ -230,8 +230,21 @@ const delTagList = (index, type) => {
 const postDialog = () => {
   const pass = judgePostParmas();
   if (pass) {
+    // const aim = {
+    //   index: dialogitemindex.value,
+    //   logcontent: {
+    //     title: dialoglogitem.value.title,
+    //     yourlog: dialoglogitem.value.yourlog,
+    //     qustinolist: dialoglogitem.value.qustinolist,
+    //     collectionlist: dialoglogitem.value.collectionlist,
+    //     idealist: dialoglogitem.value.idealist,
+    //   },
+    // };
+    // // console.log(aim);
+    // console.log(resday.value[dialogitemindex.value].day);
+
     addMyLog({
-      index: dialogitemindex.value,
+      index: resday.value[dialogitemindex.value].day,
       logcontent: {
         title: dialoglogitem.value.title,
         yourlog: dialoglogitem.value.yourlog,
@@ -296,7 +309,7 @@ let loglist = ref(0);
 let resday = ref(0);
 function getMyLog() {
   readMyLog().then((res) => {
-    resday.value = getReseveArray(mouthdate.value.day, 0, 1);
+    resday.value = getReseveArray(mouthdate.value.day, 0, 1).reverse();
     // loglist.value = res.data.data.loglist.splice(0, resday.value.length).reverse();
     loglist.value = res.data.data.loglist;
   });
@@ -318,7 +331,7 @@ function getReseveArray(aimnum, startnum, resveflag) {
       data: loglist.value[i],
     });
   }
-  resveflag ? arr.reverse() : arr;
+  // resveflag ? arr.reverse() : arr;
   return arr;
 }
 
