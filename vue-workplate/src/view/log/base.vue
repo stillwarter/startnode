@@ -29,14 +29,14 @@
 
 <template>
   <div class="st-work-log">
-    <h1>Log</h1>
+    <h1 class="textcenter">Log</h1>
 
     <div v-for="(item, index) in resday" :key="index">
       <div class="mg-t100">
         <dayitem
           :index="index"
           :day="item"
-          :data="loglist.slice(0,3).reverse()[index]"
+          :data="loglist.slice(0, 3).reverse()[index]"
           @openEdit="openEdit"
         ></dayitem>
       </div>
@@ -298,7 +298,7 @@ function getMyLog() {
   readMyLog().then((res) => {
     resday.value = getReseveArray(mouthdate.value.day, 0, 1);
     // loglist.value = res.data.data.loglist.splice(0, resday.value.length).reverse();
-    loglist.value = res.data.data.loglist
+    loglist.value = res.data.data.loglist;
   });
 }
 
@@ -306,7 +306,6 @@ function getMyLog() {
  * 根据返回的数据生成列表
  */
 const mouthdate = ref(getPassMouth());
-console.log(mouthdate.value);
 /**
  * 天数反序并混入json数据
  */

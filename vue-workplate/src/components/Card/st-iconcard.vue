@@ -91,6 +91,10 @@ const props = defineProps({
   align-items: center;
 }
 
+div{
+  text-align: center;
+}
+
 p {
   margin: 2px;
 }

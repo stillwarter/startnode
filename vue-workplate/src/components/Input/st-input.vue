@@ -1,16 +1,41 @@
 <script setup>
+import { ref, watch } from "vue";
+const emit = defineEmits(["update:contentvalue"]);
 const props = defineProps({
   label: {
     type: String,
     default: "输入标签",
   },
+  contentvalue: {
+    type: [String, Object, Array, Number],
+  },
 });
+
+const contentvalue = ref(props.contentvalue);
+//因为prop中的值非动态响应，所以需要通过watch监听，immediate 初始化时接收父组件中的传值
+watch(
+  () => props.contentvalue,
+  (newval, oldval) => {
+    contentvalue.value = props.contentvalue;
+    console.log(newval);
+  }
+);
+
+// 发送事件
+const contentvalueChange = () => {
+  emit("update:contentvalue", contentvalue.value);
+};
 </script>
 
 <template>
   <div class="stinput">
     <label class="mg-r10" for="stinput">{{ label }}:</label>
-    <input type="text" id="stinput" />
+    <input
+      type="text"
+      id="stinput"
+      v-model="contentvalue"
+      @change="contentvalueChange"
+    />
   </div>
 </template>
 

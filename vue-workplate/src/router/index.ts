@@ -45,7 +45,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/log",
     name: "log",
-    component: () => import("../view/log/index.vue"),
+    component: () => import("../view/log/base.vue"),
+  },
+
+   /* paln-计划书 */
+  {
+    path: "/plan",
+    name: "plan",
+    component: () => import("../view/plan/base.vue"),
   }
 ];
 

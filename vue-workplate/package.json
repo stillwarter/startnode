@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "axios": "^1.6.2",
+    "dayjs": "^1.11.10",
     "less": "^4.2.0",
+    "md-editor-v3": "^4.10.0",
     "vue": "^3.3.8",
     "vue-router": "^4.2.5"
   },

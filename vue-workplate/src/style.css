@@ -30,13 +30,12 @@ body {
 }
 
 div{
-  text-align: center;
+  text-align: left;
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
-  text-align: center;
 }
 
 button {

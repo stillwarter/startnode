@@ -20,7 +20,7 @@ const iconsize = ref(50);
 
 <template>
   <div class="st-work-home">
-    <h1>stillwarter 工作站</h1>
+    <h1 class="textcenter">stillwarter 工作站</h1>
     <div class="typewordbox mg-t50">
       <stIconcard position="bottom" icontag="组件库" pathname="log">
         <stSvg :svgsize="iconsize" v-html="compicon"></stSvg>
@@ -58,12 +58,14 @@ const iconsize = ref(50);
         <stSvg :svgsize="iconsize" v-html="anicon"></stSvg>
       </stIconcard>
 
-       <stIconcard position="bottom" icontag="计划" pathname="log">
+       <stIconcard position="bottom" icontag="计划书" pathname="plan">
         <stSvg :svgsize="iconsize" v-html="stuicon"></stSvg>
       </stIconcard>
     </div>
   </div>
 </template>
+
+
 
 <style lang="less" scoped>
 .st-work-home {

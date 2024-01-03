@@ -1,6 +1,7 @@
 import url from "url";
 import { test } from "./router/handlefile.js";
 import { readMyLog, addMyLog } from "./router/mylog.js";
+import { addMyPlan } from "./router/myplan.js";
 
 // 创建路由表
 let router = {
@@ -12,6 +13,8 @@ let router = {
     "/handfile": test,
     "/mylog/readMyLog": readMyLog,
     "/mylog/addMyLog": addMyLog,
+    "/myplan/readMyPlan": -1,
+    "/myplan/addMyPlan": addMyPlan,
   },
 };
 
