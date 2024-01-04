@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import stSvg from "@/components/SVG/st-svg.vue";
 import { nighticon } from "@/assets/svg/head/nighticon";
+import { homeicon } from "@/assets/svg/head/homeicon";
 let darkflag = ref(false);
 
 // 手动黑夜模式
@@ -25,7 +26,15 @@ const setDark = () => {
 <template>
   <div class="workhead">
     <!-- <p class="mg-0 darkmoel" @click="setDark">黑夜模式</p> -->
-    <stSvg class="stsvg" svgsize="18" v-html="nighticon" @click="setDark" />
+
+    <stSvg
+      class="stsvg"
+      svgsize="24"
+      topath="home"
+      v-html="homeicon"
+    />
+
+    <stSvg class="stsvg" svgsize="17" v-html="nighticon" @click="setDark" />
   </div>
 </template>
 
@@ -37,6 +46,7 @@ const setDark = () => {
   text-align: left;
   padding: 2px 10px;
   box-sizing: border-box;
+  display: flex;
 }
 
 .darkmoel {
@@ -48,6 +58,4 @@ const setDark = () => {
   width: 30px;
   margin-top: 1px;
 }
-
-
 </style>
