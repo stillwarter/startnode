@@ -36,7 +36,7 @@
         <dayitem
           :index="index"
           :day="item"
-          :data="loglist.slice(0, 3).reverse()[index]"
+          :data="loglist.slice(0, resday.length).reverse()[index]"
           @openEdit="openEdit"
         ></dayitem>
       </div>
