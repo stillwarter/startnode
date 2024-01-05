@@ -12,7 +12,8 @@ import {
  *
  * step1：判断plan文件夹下是否有该文件，没有就新增一个空的json文件，有就进行覆盖
  *        需要做一个文件夹存在判断，一个文件夹新增
- * step2：有了文件夹，就可以往里面加入文件了，初次先判断是否有
+ * step2：有了文件夹，就可以往里面加入文件了，初次先判断是否有该文件，有就直接写入
+ *        没有就先生成再写入
  *
  */
 export function addMyPlan(res, query, post, filesr, prames) {

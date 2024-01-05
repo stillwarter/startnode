@@ -112,7 +112,7 @@ const openEditItem = (index, data) => {
   left: 50%;
   transform: translateX(-50%);
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2.5fr;
   .dayline {
     box-sizing: border-box;
     border-left: 2px solid #d8dee4;
