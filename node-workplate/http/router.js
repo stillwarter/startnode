@@ -2,6 +2,8 @@ import url from "url";
 import { test } from "./router/handlefile.js";
 import { readMyLog, addMyLog } from "./router/mylog.js";
 import { addMyPlan } from "./router/myplan.js";
+import { postImg } from "./router/postimg.js";
+// import
 
 // 创建路由表
 let router = {
@@ -15,6 +17,7 @@ let router = {
     "/mylog/addMyLog": addMyLog,
     "/myplan/readMyPlan": -1,
     "/myplan/addMyPlan": addMyPlan,
+    "/postimg": postImg,
   },
 };
 

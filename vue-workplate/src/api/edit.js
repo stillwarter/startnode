@@ -11,3 +11,14 @@ export function getTest(data) {
     data,
   });
 }
+
+export function postImg(data) {
+  return request({
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    url: "/postimg",
+    method: "post",
+    data,
+  });
+}

@@ -8,13 +8,16 @@ import {
 } from "../../tool/file/base.js";
 
 /**
- * 增加计划书
+ * 增加计划书接口
  *
  * step1：判断plan文件夹下是否有该文件，没有就新增一个空的json文件，有就进行覆盖
  *        需要做一个文件夹存在判断，一个文件夹新增
+ * step1.1: 衍生需求，在写入数据的时候可能需要上传照片，我想直接做一个静态文件，
+ *          放到后台，可以直接访问
+ *          https://blog.csdn.net/AiHuanhuan110/article/details/107315206# 
+ * step1.2: 完成静态资源托管后，需要完成照片的上传功能；转入imgpost接口
  * step2：有了文件夹，就可以往里面加入文件了，初次先判断是否有该文件，有就直接写入
  *        没有就先生成再写入
- *
  */
 export function addMyPlan(res, query, post, filesr, prames) {
   const { update, data } = prames;

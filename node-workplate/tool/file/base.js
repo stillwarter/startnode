@@ -81,3 +81,55 @@ function writeToJsonFile(filename, data, callback) {
     }
   });
 }
+
+/**
+ * 文件读取promise
+ */
+export function readFile(filePath) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filePath, "binary", (err, data) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(data);
+    });
+  });
+}
+
+/**
+ * 图片可写流，用于写入大图片
+ */
+function writeLargeImageFile(filename, imageData, callback) {
+  // 创建一个可写的数据流
+  const writeStream = fs.createWriteStream(filename);
+
+  // 监听数据流的错误事件
+  writeStream.on("error", (error) => {
+    console.error(`写入图片文件失败: ${error}`);
+    if (callback) {
+      callback(error);
+    }
+  });
+
+  // 监听数据流的 'finish' 事件，表示写入完成
+  writeStream.on("finish", () => {
+    console.log(`图片文件 ${filename} 已成功写入`);
+    if (callback) {
+      callback();
+    }
+  });
+
+  // 将图像数据写入数据流
+  writeStream.write(imageData);
+}
+
+// writeLargeImageFile 示例调用
+// const imageData = "二进制的图像数据";
+// writeLargeImageFile("image.png", imageData, (error) => {
+//   if (error) {
+//     console.error("写入图片文件的操作已完成，但发生了错误:", error);
+//   } else {
+//     console.log("写入图片文件的操作已完成，没有错误");
+//   }
+// });

@@ -1,22 +1,37 @@
 import http from "http";
 import url from "url";
 import { findRouter } from "./http/router.js";
+import { readFile } from "./tool/file/base.js";
 
 const server = http.createServer((req, res) => {
   /* 不处理favicon请求 */
   if (url.parse(req.url).path == "/favicon.ico") return;
 
+  /* 静态资源文件处理 */
+  if (req.url.indexOf("/public/") !== -1) {
+    //判断请求路径是否包含public目录（简单判断）
+    console.log("获取静态文件");
+    readFile("." + req.url).then((data) => {
+      res.write(data, "binary");
+      res.end();
+    });
+    return;
+  }
+
   /**
    * 解析请求数据
    * 获取请求路径和query数据
+   * 获取请求头类型（处理图片）
    */
   const method = req.method;
+  const contentType = req.headers["content-type"];
   const { pathname, query } = url.parse(req.url, true);
 
   /**
    * 处理post请求接收到的数据
    */
-  if (method === "POST") {
+  if (method === "POST" && !contentType.includes("multipart/form-data")) {
+    console.log(2);
     let str = "";
 
     req.on("data", (chunk) => {
@@ -30,6 +45,8 @@ const server = http.createServer((req, res) => {
         processDate(method, pathname, query, {}, {}, req, res);
       }
     });
+  } else if (method === "POST" && contentType.includes("multipart/form-data")) {
+    console.log(1);
   } else {
     processDate(method, pathname, query, {}, {}, req, res);
   }
