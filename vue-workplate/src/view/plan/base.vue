@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import { routerTo } from "@/tool/base.js";
 import { getPlanList } from "@/api/plan";
 const mdlist = ref(0);
 getPlanList().then((res) => {
@@ -10,24 +9,20 @@ getPlanList().then((res) => {
 
 <template>
   <div class="basebox flexjustifycenter">
-    <div class="listbox">
-      <div
-        class="mg-b10 cursorpoint"
-        v-for="(item, index) in mdlist"
-        @click="routerTo('planpreview')"
-      >
+    <div class="listbox" v-if="mdlist.length">
+      <div class="mg-b10 cursorpoint" v-for="(item, index) in mdlist">
         <router-link
           :to="'/planpreview?title=' + item.substring(0, item.length - 3)"
           >{{ item.substring(0, item.length - 3) }}</router-link
         >
       </div>
     </div>
+    <div class="mg-t30" v-else>
+      本月还没有记录哟~
+    </div>
 
     <div class="meunbtn">
-     <router-link
-          :to="'/planedit'"
-          >add</router-link
-        >
+      <router-link :to="'/planedit'">add</router-link>
     </div>
   </div>
 </template>
@@ -38,7 +33,7 @@ getPlanList().then((res) => {
   padding-top: 10px;
 }
 
-.meunbtn{
+.meunbtn {
   position: fixed;
   bottom: 0;
   left: 0;
