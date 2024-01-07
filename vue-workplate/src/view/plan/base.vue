@@ -8,10 +8,12 @@ getPlanList().then((res) => {
 </script>
 
 <template>
+  <h1 class="centerh1">Plans</h1>
   <div class="basebox flexjustifycenter">
     <div class="listbox" v-if="mdlist.length">
       <div class="mg-b10 cursorpoint" v-for="(item, index) in mdlist">
         <router-link
+          class="fontsize20"
           :to="'/planpreview?title=' + item.substring(0, item.length - 3)"
           >{{ item.substring(0, item.length - 3) }}</router-link
         >

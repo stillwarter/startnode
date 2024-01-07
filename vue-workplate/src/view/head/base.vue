@@ -12,11 +12,13 @@ const setDark = () => {
   if (darkflag.value) {
     bodydom.style = "filter: invert(1) hue-rotate(180deg);";
     const styledom = document.createElement("style");
-    styledom.innerHTML = "svg{filter: invert(1) hue-rotate(180deg);}";
+    styledom.innerHTML =
+      "svg{filter: invert(1) hue-rotate(180deg);}img{filter: invert(1) hue-rotate(180deg);}";
     document.head.appendChild(styledom);
   } else {
     const styledom = document.createElement("style");
-    styledom.innerHTML = "svg{filter: invert(0) hue-rotate(0);}";
+    styledom.innerHTML =
+      "svg{filter: invert(0) hue-rotate(0);}img{filter: invert(0) hue-rotate(0);}";
     document.head.appendChild(styledom);
     bodydom.style = "filter: invert(0) hue-rotate(0);";
   }
@@ -27,12 +29,7 @@ const setDark = () => {
   <div class="workhead">
     <!-- <p class="mg-0 darkmoel" @click="setDark">黑夜模式</p> -->
 
-    <stSvg
-      class="stsvg"
-      svgsize="24"
-      topath="home"
-      v-html="homeicon"
-    />
+    <stSvg class="stsvg" svgsize="24" topath="home" v-html="homeicon" />
 
     <stSvg class="stsvg" svgsize="17" v-html="nighticon" @click="setDark" />
   </div>

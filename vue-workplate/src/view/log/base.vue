@@ -29,7 +29,7 @@
 
 <template>
   <div class="st-work-log">
-    <h1 class="textcenter">Log</h1>
+    <h1 class="textcenter logtitle">Log</h1>
 
     <div v-for="(item, index) in resday" :key="index">
       <div class="mg-t100">
@@ -342,6 +342,13 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+.logtitle {
+  width: 1200px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: left;
+}
 .st-work-log {
   width: 100vw;
 }
