@@ -1,48 +1,48 @@
 <script setup>
 import { ref } from "vue";
-import { getTest } from "@/api/edit.js";
-import mdEditorV3 from "@/components/EdiTool/md-editor-v3.vue";
-import dayjs from "dayjs";
-const update=dayjs(new Date().now).format("YYYY-MM-DD HH:mm:ss")
-
-console.log();
-
-/* 编辑完成保存 */
-const onSave = (v, h) => {
-  console.log(v);
-
-  h.then((html) => {
-    const parmas={
-        update,
-        data:JSON.stringify(html)
-    }
-    getTest(parmas)
-  });
-};
+import { routerTo } from "@/tool/base.js";
+import { getPlanList } from "@/api/plan";
+const mdlist = ref(0);
+getPlanList().then((res) => {
+  mdlist.value = res.data.data;
+});
 </script>
+
 <template>
-  <div class="planbox">
-    <div class="editorbox">
-      <mdEditorV3 @onSave="onSave" />
+  <div class="basebox flexjustifycenter">
+    <div class="listbox">
+      <div
+        class="mg-b10 cursorpoint"
+        v-for="(item, index) in mdlist"
+        @click="routerTo('planpreview')"
+      >
+        <router-link
+          :to="'/planpreview?title=' + item.substring(0, item.length - 3)"
+          >{{ item.substring(0, item.length - 3) }}</router-link
+        >
+      </div>
+    </div>
+
+    <div class="meunbtn">
+     <router-link
+          :to="'/planedit'"
+          >add</router-link
+        >
     </div>
   </div>
 </template>
 
 <style lang="less" scoped>
-.planbox {
-  width: 100vw;
-  box-sizing: border-box;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.listbox {
+  width: 60%;
+  padding-top: 10px;
+}
 
-  .editorbox {
-    width: 80%;
-    min-height: calc(100vh - 24px);
-    #md-editor-v3 {
-      min-height: calc(100vh - 24px);
-    }
-  }
+.meunbtn{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
+  cursor: pointer;
 }
 </style>

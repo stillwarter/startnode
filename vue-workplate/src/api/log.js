@@ -6,6 +6,7 @@ export function readMyLog() {
     method: "post",
   });
 }
+
 export function addMyLog(data) {
   return request({
     url: "/mylog/addMyLog",

@@ -1,7 +1,7 @@
 import url from "url";
 import { test } from "./router/handlefile.js";
 import { readMyLog, addMyLog } from "./router/mylog.js";
-import { addMyPlan } from "./router/myplan.js";
+import { addMyPlan, readMyPlan, getMyPlanCtx } from "./router/myplan.js";
 import { postImg } from "./router/postimg.js";
 // import
 
@@ -15,7 +15,8 @@ let router = {
     "/handfile": test,
     "/mylog/readMyLog": readMyLog,
     "/mylog/addMyLog": addMyLog,
-    "/myplan/readMyPlan": -1,
+    "/myplan/readMyPlan": readMyPlan,
+    "/myplan/getMyPlanCtx": getMyPlanCtx,
     "/myplan/addMyPlan": addMyPlan,
     "/postimg": postImg,
   },

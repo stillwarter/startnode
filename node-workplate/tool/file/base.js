@@ -98,11 +98,29 @@ export function readFile(filePath) {
 }
 
 /**
+ * 获取目标文件路径下的所有文件名
+ */
+export function readPathAllFileName(filePath) {
+  const files = fs.readdirSync(filePath);
+
+  // 过滤出文件名（排除 . 和 ..）
+  const filenames = files.filter(
+    (filename) => filename !== "." && filename !== ".."
+  );
+
+  return filenames;
+}
+
+/**
  * 图片可写流，用于写入大图片
  */
-function writeLargeImageFile(filename, imageData, callback) {
+export function writeLargeImageFile(filename, imageData, callback) {
+  // const read = fs.createReadStream(process.cwd() + "/public/img/1.jpg");
   // 创建一个可写的数据流
-  const writeStream = fs.createWriteStream(filename);
+  const writeStream = fs.createWriteStream(filename, {
+    // encoding: "base64",
+    autoClose: true,
+  });
 
   // 监听数据流的错误事件
   writeStream.on("error", (error) => {
@@ -112,6 +130,11 @@ function writeLargeImageFile(filename, imageData, callback) {
     }
   });
 
+  // 获取data
+  writeStream.on("data", (data) => {
+    console.log(`接收数据`);
+  });
+
   // 监听数据流的 'finish' 事件，表示写入完成
   writeStream.on("finish", () => {
     console.log(`图片文件 ${filename} 已成功写入`);
@@ -119,17 +142,33 @@ function writeLargeImageFile(filename, imageData, callback) {
       callback();
     }
   });
+} // 根据文件名获取文件内容的函数
 
-  // 将图像数据写入数据流
-  writeStream.write(imageData);
+/**
+ * 文件读取 demo
+ */
+export function getFileContent(fileName) {
+  // 以读文件的方式打开文件
+  const fileStream = fs.createReadStream(fileName);
+  let content = "";
+  // 创建一个回调函数，用于处理读取的数据
+  const callback = (data) => {
+    content = data.toString();
+    // 在这里你可以对文件内容进行进一步的处理
+    // console.log(content);
+  };
+
+  // 在文件流上注册数据回调函数
+  fileStream.on("data", callback);
+
+  // 处理文件读取错误
+  fileStream.on("error", (error) => {
+    console.error(`文件读取错误: ${error}`);
+  });
+
+  // 文件读取完成时触发
+  fileStream.on("end", () => {
+    console.log("文件读取完成");
+    return content
+  });
 }
-
-// writeLargeImageFile 示例调用
-// const imageData = "二进制的图像数据";
-// writeLargeImageFile("image.png", imageData, (error) => {
-//   if (error) {
-//     console.error("写入图片文件的操作已完成，但发生了错误:", error);
-//   } else {
-//     console.log("写入图片文件的操作已完成，没有错误");
-//   }
-// });
