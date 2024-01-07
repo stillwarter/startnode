@@ -5,7 +5,6 @@ import {
   generateDirectory,
   generateEmptyJsonFile,
   readPathAllFileName,
-  getFileContent,
 } from "../../tool/file/base.js";
 import turndownService from "turndown";
 const turndownServiceOption = {
