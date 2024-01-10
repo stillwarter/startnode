@@ -63,6 +63,13 @@ const routes: Array<RouteRecordRaw> = [
     path: "/planpreview",
     name: "planpreview",
     component: () => import("../view/plan/planpreview.vue"),
+  },
+
+  /* lib-实验室 */
+  {
+    path:"/lib",
+    name:"lib",
+    component:()=> import("../view/lib/base.vue")
   }
 ];
 

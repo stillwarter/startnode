@@ -30,7 +30,7 @@ const iconsize = ref(50);
         <stSvg :svgsize="iconsize" v-html="logicon"></stSvg>
       </stIconcard>
 
-      <stIconcard position="bottom" icontag="实验室" pathname="log">
+      <stIconcard position="bottom" icontag="实验室" pathname="lib">
         <stSvg :svgsize="iconsize" v-html="libicon"></stSvg>
       </stIconcard>
     </div>
