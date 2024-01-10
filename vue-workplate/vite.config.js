@@ -30,6 +30,10 @@ export default defineConfig({
         target: "https://fishpi.cn",
         changeOrigin: true,
       },
+      "/chat-room": {
+        target: "https://fishpi.cn",
+        changeOrigin: true,
+      },
     },
   },
 });
