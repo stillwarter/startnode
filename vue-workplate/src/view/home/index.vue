@@ -9,6 +9,7 @@ import { libicon } from "@/assets/svg/home/libicon";
 import { stuicon } from "@/assets/svg/home/stuicon";
 import { anicon } from "@/assets/svg/home/anicon";
 import { gameicon } from "@/assets/svg/home/gameicon";
+import { eighticon } from "@/assets/svg/eight/eighticon";
 import stSvg from "@/components/SVG/st-svg.vue";
 import { ref } from "vue";
 
@@ -54,8 +55,8 @@ const iconsize = ref(50);
         <stSvg :svgsize="iconsize" v-html="gameicon"></stSvg>
       </stIconcard>
 
-      <stIconcard position="bottom" icontag="动画库" pathname="log">
-        <stSvg :svgsize="iconsize" v-html="anicon"></stSvg>
+      <stIconcard position="bottom" icontag="八股" pathname="eight">
+        <stSvg :svgsize="iconsize" v-html="eighticon"></stSvg>
       </stIconcard>
 
       <stIconcard position="bottom" icontag="计划书" pathname="plan">

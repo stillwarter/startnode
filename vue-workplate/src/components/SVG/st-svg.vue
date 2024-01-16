@@ -11,7 +11,7 @@ const svgbox = ref(null);
 
 const pathTo = () => {
   if (props.topath) {
-    router.push(props.topath);
+    router.push("/" + props.topath);
   }
 };
 

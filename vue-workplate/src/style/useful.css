@@ -96,3 +96,7 @@
 .cursorpoint{
   cursor: pointer;
 }
+
+.transition{
+  transition: all .3s linear;
+}

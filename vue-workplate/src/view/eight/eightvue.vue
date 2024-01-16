@@ -1,0 +1,14 @@
+<template>
+  <div>
+    vue八股（v2）
+    <div>
+      <p>Q:用过插槽吗</p>
+      <p>Q:用过自定义指令吗</p>
+      <p>Q:父子组件的声明周期</p>
+      <p>Q:如何维护两个非父子组件的传参</p>
+      <p>Q:v2的声明周期</p>
+      <p>Q:watch和computed可以做异步操作吗</p>
+      <p>...</p>
+    </div>
+  </div>
+</template>

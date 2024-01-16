@@ -70,6 +70,25 @@ const routes: Array<RouteRecordRaw> = [
     path:"/lib",
     name:"lib",
     component:()=> import("../view/lib/base.vue")
+  },
+
+  /* eight-八股文 */
+  {
+    path:"/eight",
+    name:"eight",
+    component:()=>import("../view/eight/base.vue"),
+    children: [
+      {
+        path: 'vue',
+        name: 'vue',
+        component: () => import("../view/eight/eightvue.vue")   
+      },
+      {
+        path: 'vue1',
+        name: 'vue1',
+        component: () => import("../view/eight/eightvue.vue")   
+      }
+    ]
   }
 ];
 
