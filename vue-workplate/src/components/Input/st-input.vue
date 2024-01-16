@@ -43,7 +43,6 @@ const contentvalueChange = () => {
 .stinput {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
   align-items: center;
 }
 

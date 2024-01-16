@@ -4,7 +4,6 @@ import { useRouter } from "vue-router";
 
 const router = useRouter();
 const curpath = toRaw(router).currentRoute.value.fullPath;
-console.log(curpath);
 const meun = ref(toRaw(router).currentRoute.value.matched[0].children);
 
 const pathTo = (path) => {
@@ -15,7 +14,6 @@ const pathTo = (path) => {
 <template>
   <div class="eightbox">
     <div class="leftmeun">
-      <!-- <div style="margin-left: 40px;">fish</div> -->
       <div
         class="cursorpoint transition"
         v-for="(item, index) in meun"

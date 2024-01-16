@@ -69,7 +69,14 @@ const routes: Array<RouteRecordRaw> = [
   {
     path:"/lib",
     name:"lib",
-    component:()=> import("../view/lib/base.vue")
+    component:()=> import("../view/lib/base.vue"),
+    children: [
+      {
+        path: 'fish',
+        name: 'fish',
+        component: () => import("../view/lib/fish.vue")   
+      },
+    ]
   },
 
   /* eight-八股文 */
