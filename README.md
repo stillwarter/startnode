@@ -17,3 +17,7 @@ How did I start nodejs as an noob
 ## Plan Module
 
 引入md-editor-v3库，增加了图片上传功能，可以编辑md文件，支持预览。这个模块帮助我有效的制定计划。
+
+## Eight Module
+
+新增八股模块，记录一些八股文（长时间不看，面试会很尴尬...）
