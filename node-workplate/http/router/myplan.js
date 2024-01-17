@@ -1,4 +1,7 @@
 import fs from "node:fs";
+
+import { FilePathModule } from "../../Class/St-file.js";
+
 import {
   checkFilePresence,
   checkFolderPath,
@@ -32,20 +35,11 @@ const turndownServiceOption = {
  *        没有就先生成再写入
  */
 export function addMyPlan(res, query, post, filesr, prames) {
-  const { update, data } = prames;
-  const updatelist = update.split("-").splice(0, 2);
+  const { data } = prames;
+  // const updatelist = update.split("-").splice(0, 2);
 
-  // 年份文件夹和月份文件夹
-  const ypath = process.cwd() + "/static/myplan/" + updatelist[0];
-  const mpath = ypath + "/" + updatelist[1];
-
-  // 文件夹存在性判断
-  checkFolderPath(ypath)
-    ? console.log("myplan-存在年份文件夹")
-    : generateDirectory(ypath);
-  checkFolderPath(mpath)
-    ? console.log("myplan-存在月份文件夹")
-    : generateDirectory(mpath);
+  const filedemo = new FilePathModule("/static/myplan/");
+  const { ypath, mpath } = filedemo.setPath();
 
   // 判断是否存在plan md文件
   const planitemtitle = getPramesContent(JSON.parse(data)) + ".md";

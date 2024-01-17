@@ -40,13 +40,13 @@ const sendMessage = (word) => {
   //   "> <sub>❤️现在是代理喵520号机器人❤️~ 请勿打扰</sub>" +
   //   "\n" +
   //   "<sub>send by StartNode  Cover:cat520</sub>";
-  sdata.content =
-    "\n" +
-    word +
-    "\n" +
-    "> <sub>❤️现在是代理喵520号机器人❤️~ 请勿打扰</sub>" +
-    "\n" +
-    "<sub>~~~send by StartNode  Cover:cat520</sub>";
+  sdata.content = word;
+  // "\n" +
+  // word +
+  // "\n" +
+  // "> <sub>❤️现在是代理喵520号机器人❤️~ 请勿打扰</sub>" +
+  // "\n" +
+  // "<sub>~~~send by StartNode  Cover:cat520</sub>";
   axios.post("/chat-room/send", sdata).then((res) => {
     if (res.status === 200) {
       showMessage("发送成功");
@@ -68,15 +68,15 @@ const sendMessagewithzhiyi = (word) => {
     word +
     "\n" +
     "--- 《摸鱼志异》" +
-    "\n" +
-    "> <sub>❤️现在是代理喵520号机器人❤️~ 请勿打扰</sub>" +
-    "\n" +
-    "<sub>~~~send by StartNode  Cover:cat520</sub>";
-  axios.post("/chat-room/send", sdata).then((res) => {
-    if (res.status === 200) {
-      showMessage("发送成功");
-    }
-  });
+    // "\n" +
+    // "> <sub>❤️现在是代理喵520号机器人❤️~ 请勿打扰</sub>" +
+    // "\n" +
+    // "<sub>~~~send by StartNode  Cover:cat520</sub>";
+    axios.post("/chat-room/send", sdata).then((res) => {
+      if (res.status === 200) {
+        showMessage("发送成功");
+      }
+    });
 };
 </script>
 
