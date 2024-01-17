@@ -18,6 +18,10 @@ How did I start nodejs as an noob
 
 引入md-editor-v3库，增加了图片上传功能，可以编辑md文件，支持预览。这个模块帮助我有效的制定计划。
 
+## Stu Module
+
+学习模块，用于学习一些用到过但不是很懂的东西。这很重要！一定要了解尝试新东西。
+
 ## Lib Module
 
 实验室模块，用于探索一些未知的功能。
