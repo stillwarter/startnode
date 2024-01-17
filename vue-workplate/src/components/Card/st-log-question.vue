@@ -2,7 +2,7 @@
   <div class="logquestionbox mg-t20" :style="'border-color:' + bordercolor">
     <!-- {{ content }} -->
     <span style="white-space: pre-line;" v-html="content"></span>
-    <stSvg class="ani" svgsize="50" v-html="iconpath"></stSvg>
+    <stSvg v-if="iconpath" class="ani" svgsize="50" v-html="iconpath"></stSvg>
   </div>
 </template>
 

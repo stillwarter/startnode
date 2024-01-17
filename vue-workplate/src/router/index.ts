@@ -79,6 +79,20 @@ const routes: Array<RouteRecordRaw> = [
     ]
   },
 
+  /* stu-学习 */
+  {
+    path:"/stu",
+    name:"stu",
+    component:()=>import("../view/Stu/base.vue"),
+    children: [
+      {
+        path: 'DesignModule',
+        name: 'DesignModule',
+        component: () => import("../view/Stu/DesignModule.vue")   
+      },
+    ]
+  },
+
   /* eight-八股文 */
   {
     path:"/eight",
