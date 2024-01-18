@@ -10,6 +10,7 @@ import { stuicon } from "@/assets/svg/home/stuicon";
 import { anicon } from "@/assets/svg/home/anicon";
 import { gameicon } from "@/assets/svg/home/gameicon";
 import { eighticon } from "@/assets/svg/eight/eighticon";
+import { translateicon } from "@/assets/svg/translate/translateicon";
 import stSvg from "@/components/SVG/st-svg.vue";
 import { ref } from "vue";
 
@@ -27,7 +28,7 @@ const iconsize = ref(50);
         <stSvg :svgsize="iconsize" v-html="compicon"></stSvg>
       </stIconcard>
 
-      <stIconcard position="bottom" icontag="日报" pathname="log">
+      <stIconcard position="bottom" icontag="日 报" pathname="log">
         <stSvg :svgsize="iconsize" v-html="logicon"></stSvg>
       </stIconcard>
 
@@ -37,7 +38,7 @@ const iconsize = ref(50);
     </div>
 
     <div class="typewordbox mg-t30">
-      <stIconcard position="bottom" icontag="游戏" pathname="log">
+      <stIconcard position="bottom" icontag="游 戏" pathname="log">
         <stSvg :svgsize="iconsize" v-html="gameicon"></stSvg>
       </stIconcard>
 
@@ -45,17 +46,17 @@ const iconsize = ref(50);
         <stSvg :svgsize="iconsize" v-html="anicon"></stSvg>
       </stIconcard>
 
-      <stIconcard position="bottom" icontag="学习" pathname="stu">
+      <stIconcard position="bottom" icontag="学 习" pathname="stu">
         <stSvg :svgsize="iconsize" v-html="stuicon"></stSvg>
       </stIconcard>
     </div>
 
     <div class="typewordbox mg-t30">
-      <stIconcard position="bottom" icontag="游戏" pathname="log">
-        <stSvg :svgsize="iconsize" v-html="gameicon"></stSvg>
+      <stIconcard position="bottom" icontag="翻 译" pathname="log">
+        <stSvg :svgsize="iconsize" v-html="translateicon"></stSvg>
       </stIconcard>
 
-      <stIconcard position="bottom" icontag="八股" pathname="eight">
+      <stIconcard position="bottom" icontag="八 股" pathname="eight">
         <stSvg :svgsize="iconsize" v-html="eighticon"></stSvg>
       </stIconcard>
 
