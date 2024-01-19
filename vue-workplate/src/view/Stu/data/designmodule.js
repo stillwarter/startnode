@@ -122,3 +122,88 @@ export const jsoopcodeinfoNoP = `
   makeSound( new Duck() );    // 嘎嘎嘎
   makeSound( new Chicken() ); // 咯咯咯
 `;
+
+export const jsoopundestand = `对于多态我的理解：
+对于某些操作，多态似乎将请求和运行两者分开，比如我有一个“发出叫声”的请求，拆分一下，就是叫的动作和叫的载体，对应就是类和类方法。
+所以，我们可以做一个大的请求函数，用于运行类下的方法函数。
+这样达到“分离”的目的。
+`;
+
+export const jsooptype = ` 
+String str;
+str = "abc";    // - 没有问题
+// str = 2;     // - 报错
+
+// - 现在我们尝试把上面让鸭子和鸡叫的例子换成 Java 代码:
+
+// - 鸭子类
+public class Duck {
+    public void makeSound() {
+        // - 在Java语言中, 标准输入输出流使用 'println(print line)'.
+        // - C 语言 中 "stdio.h" 库中的标准函数 "printf()" (print format)
+        System.out.println('嘎嘎嘎');
+    }
+}
+
+// - 鸡类
+public class Chicken {
+    public void makeSound() {
+        System.out.println('咯咯咯');
+    }
+}
+
+// - AnimalSound 动物叫的类
+public class AnimalSound {
+    public void makeSound(Duck duck) {  // {1}
+        duck.makeSound()
+    }
+}
+
+public class Test {
+    public static void main(String args[]) {
+        AnimalSound animalSound = new AnimalSound();
+        Duck duck = new Duck();
+        animalSound.makeSound(duck);    // 输出: 嘎嘎嘎
+    }
+}`;
+
+export const jsoopextend = ` 
+// - 创建一个抽象类 Animal
+public abstract class Animal {
+    abstract void makeSound();  // - 抽象方法
+}
+public class Chicken extends Animal {
+    public void makeSound() {
+        System.out.println('咯咯咯');
+    }
+}
+public class Duck extends Animal {
+    public void makeSound() {
+        System.out.println('嘎嘎嘎');
+    }
+}
+Animal duck = new Duck();       // {1}
+Animal chicken = new Chicken(); // {2}
+public class AnimalSound {
+    // - 接受 Animal 类型的参数
+    public void makeSound(Animal animal) {
+        animal.makeSound();
+    }
+}
+public class Test {
+    public static void main(String args[]) {
+        AnimalSound animalSound = new AnimalSound();
+        Animal duck = new Duck();
+        Animal chicken = new Chicken();
+        animalSound.makeSound(duck);    // 输出 嘎嘎嘎
+        animalSound.makeSound(chicken); // 输出 咯咯咯
+    }
+}`;
+
+export const jsoopwork = `Martin Fowler 在《重构:改善既有代码的设计》里写到:
+
+多态的最根本好处在于, 你不必再向对象询问 "你是什么类型" 而后根据得到的答案调用对象的某个行为 -- 你只管调用该行为就是了, 其他的一切多态机制都会为你安排妥当.
+`;
+
+export const jsooppackage = `封装的目的是将信息隐藏. 一般而言, 我们讨论的封装是封装数据和封装实现. 这一节将讨论更广义的封装, 不仅包括封装数据和封装实现, 还包括封装类型和封装变化。
+`;

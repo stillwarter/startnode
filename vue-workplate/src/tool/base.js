@@ -7,3 +7,5 @@ export function routerTo(path) {
   console.log(router);
   // router.push(path);
 }
+
+
