@@ -40,7 +40,11 @@ const pathTo = (path) => {
   .leftmeun {
     border-right: 1px solid #000;
     padding-left: 16px;
+    padding-right: 16px;
     padding-top: 10px;
+    height: 100vh;
+    position: sticky;
+    top: 0px;
   }
   .ctx {
     padding: 20px 50px;

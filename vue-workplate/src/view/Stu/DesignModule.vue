@@ -5,23 +5,69 @@ import JsOOP from "./JsOOP/JsOOP.vue";
 import { designoverview } from "./data/base.js";
 
 import singlemodule from "./DesignModule/singlemodule.vue";
-import { getTitleH1, findH } from "@/tool/stushow.js";
+import { getTitleH1, findH, getTopDes } from "@/tool/stushow.js";
 
 const directorytitle = ref("目录");
 const directoryctx = ref([]);
+const pagedis = ref(window.screen.height);
+const hkey = ref(0);
 
-const toH = (dom) => {
+const toH = (dom, index) => {
   // 将目标元素滚动到可视区域
   dom.scrollIntoView({
     behavior: "smooth",
   });
+  setTimeout(() => {
+    hkey.value = index;
+  }, 300);
 };
 
-onMounted(() => {
+const handleScroll = () => {
+  // console.log("滚动高度", window.pageYOffset);
+  const dis = document.documentElement.scrollTop;
+
+  pagedis.value = parseInt(dis);
+  // console.log(directoryctx.value[0].dt-parseInt(dis));
+  // console.log(window.innerWidth);
+  if (dis < directoryctx.value[0].dt - 200) {
+    hkey.value = 0;
+    return;
+  }
+  for (const i in directoryctx.value) {
+    // 若当前元素距离顶部位置 减去 滚动距离顶部位置是大于0的 说明当前该元素内容还出现在页面上
+    // 要找到当前内容超出1/3的位置,就是说他距离顶部只有1/3留到页面上
+    // 比如第一个h2(底部)距离顶部888,那么滚动条滚到888的时候就已经没了,所以我们预留个1/4 当只有1/4出现在屏幕时候,就已经是下一个内容了
+    // 不行 每个块的高度不一样,
+    // 如果当前块高度
+    // 当dis到888后,第一个就没了,预留200的空间,当888-200--dis的时候,这个时候就应该是下一个块了
+
+    // console.log(parseInt(dis)-directoryctx.value[i].dt);
+    // if (!(parseInt(directoryctx.value[i].dt * 3) / 4 - dis > 0)) {
+    //   hkey.value = Number(i) + 1;
+    // }
+    if (dis > directoryctx.value[i].dt - 200) {
+      hkey.value = Number(i) + 1;
+    }
+  }
+};
+window.addEventListener("scroll", handleScroll, true);
+
+onMounted(async () => {
   const h1 = getTitleH1();
   directorytitle.value = h1 + "目录";
+  directoryctx.value = await findH();
 
-  directoryctx.value = findH();
+  // getTopDes(document.querySelector("h2"));
+
+  // console.log(directoryctx.value);
+  // document.addEventListener("scroll", doScroll);
+
+  // const foo = (n) =>
+  //   new Promise((resolve) =>
+  //     n < 3 ? setTimeout(() => ++n && resolve(foo(n)), 1000) : resolve(n)
+  //   );
+
+  // (async () => console.log(await foo(0)))(); // 8秒后打印8
 });
 </script>
 
@@ -32,7 +78,7 @@ onMounted(() => {
       <stLogQuestion
         bordercolor="#6dd5ed"
         :content="designoverview"
-        style="width: 100%"
+        style="width: 100%;"
       />
 
       <JsOOP />
@@ -46,12 +92,24 @@ onMounted(() => {
           <p
             v-if="item.type == 'h3'"
             class="h3p transition"
-            @click="toH(item.dom)"
+            @click="toH(item.dom, index)"
           >
-            {{ item.inner }}
+            <span
+              v-if="hkey == index"
+              style="color: rgb(21, 202, 49) !important;"
+            >
+              {{ item.inner }}</span
+            >
+            <span v-else>{{ item.inner }}</span>
           </p>
-          <p v-else class="h2p transition" @click="toH(item.dom)">
-            {{ item.inner }}
+          <p v-else class="h2p transition" @click="toH(item.dom, index)">
+            <span
+              v-if="hkey == index"
+              style="color: rgb(21, 202, 49) !important;"
+            >
+              {{ item.inner }}</span
+            >
+            <span v-else>{{ item.inner }}</span>
           </p>
         </div>
       </div>
@@ -73,9 +131,11 @@ h1 {
 .directory {
   margin-left: 20px;
   padding-left: 10px;
+  padding-top: 10px;
+  box-sizing: border-box;
   top: 0;
   position: sticky;
-  height: 20px;
+  height: calc(100vh - 24px);
   .titlelist {
     margin-left: 10px;
     margin-top: 10px;

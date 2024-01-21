@@ -207,3 +207,130 @@ export const jsoopwork = `Martin Fowler 在《重构:改善既有代码的设计
 
 export const jsooppackage = `封装的目的是将信息隐藏. 一般而言, 我们讨论的封装是封装数据和封装实现. 这一节将讨论更广义的封装, 不仅包括封装数据和封装实现, 还包括封装类型和封装变化。
 `;
+
+export const jsooppackagecode = `
+ var myObject = (function() {
+      // - 私有(private) 变量
+      var _name = 'sven'; 
+      return {
+          // - 公开(public) 方法
+          getName: function() {
+              return _name;
+          }
+      }
+  })();
+
+  console.log(myObject.getName());    // 输出: sven
+  console.log(myObject._name);        // 输出: undefined
+  
+`;
+
+export const jsooppackagechange = `考虑你的设计中那些地方可能变化, 这种方式与关注会导致重新设计的原因相反. 它不是考虑什么时候回迫使你的设计改变, 而是考虑你怎样才能够在不重新设计的情况下进行改变. 这里的关键在于封装发生变化的概念, 这也是许多设计模式的主题.
+`;
+
+export const jsoopclone = `
+const Plane = function () {
+     this.blood = 100;
+     this.attackLevel = 1;
+     this.defenseLevel = 1;
+  };
+  
+  let plane = new Plane();
+  plane.blood = 500;
+  plane.attackLevel = 10;
+  plane.defenseLevel = 7;
+  
+  let clonePlane = Object.create(plane);
+  console.log(clonePlane);            // Plane {}
+  console.log(clonePlane.blood);      // 500
+  console.log(clonePlane.attackLevel);// 10
+  
+  // 若不支持obj。create方法的浏览器 则使用：
+  Object.create = Object.create || function(obj) {
+    var F = Function() {};
+    F.prototype = obj;
+    return  new F();
+  }`;
+
+export const jsoopobjprototype = `
+let obj1 = {};
+let obj2 = {};
+// 可以利用 ES5 提供的 Object.getPrototypeOf 来查看这两个对象的原型:
+console.log(Object.getPrototypeOf( obj1 ) === Object.prototype);  // true
+console.log(Object.getPrototypeOf( obj2 ) === Object.prototype);  // true
+
+`;
+
+export const jsoopobjnew = `
+function Person(name) {
+    this.name = name;
+}
+
+Person.prototype.getName = function () {
+    return this.name;
+};
+
+let person = new Person('Kew');
+console.log(person.name);
+console.log(person.getName());
+console.log(Object.getPrototypeOf(person) === Person.prototype);
+console.log('\/n' +  '//' + ('*'.repeat(66)) + '\/n');
+
+`;
+
+export const jsoopundestandnew = `
+function Person(name) {
+    this.name = name;
+}
+Person.prototype.getName = function() {
+    return this.name;
+}
+
+// - (A)
+var objectFactory = function() {
+    // - (1) 从 Object.prototype 上克隆一个空的对象.
+    var obj = new Object();
+
+    // - (2) 取得外部传入的构造器, 此例是 Person.
+    var Constructor = [].shift.call(arguments);
+
+    // - (3) 执行正确的原型.
+    // - tip: 我们根据 "JavaScript 原型图"(见下 "图(1)") 可以看出,
+    //   obj.__proto__ 会指向它的构造函数的原型(Object.prototype),
+    //   此处把 Constructor.prototype 赋值给 obj.__proto__ 是修正原型指向.
+    obj.__proto__ = Constructor.prototype;
+
+    // - (4) 借用外部传入的构造器给 obj 设置属性
+    var ret = Constructor.apply(obj, arguments);
+
+    // - (5) 确保构造器总是会返回一个对象
+    return typeof ret === 'object' ? ret : obj;
+}
+
+let a = objectFactory(Person, "seven");
+
+console.log(a);     // Person { name: 'seven' }
+console.log(a.name);
+console.log(a.getName());
+console.log(Object.getPrototypeOf(a) === Person.prototype);
+
+// - 我们看到, 分别调用下面两句代码产生了一样的结果:
+var b = objectFactory(Person, 'sven');
+var bb = new Person('sven');
+
+`;
+
+export const jsoopthis = `跟别的语言大相径庭的是, JavaScript 的 this 总指向一个对象, 而具体指向哪个对象是在运行时 基于函数的执行环境动态绑定的, 而非函数被声明时的环境.
+`;
+
+export const jsoopthisf1 = `
+var obj = {
+    a: 1,
+    getA: function() {
+        alert(this === obj);    // output: true
+        alert(this.a);      // output: 1
+    }
+};
+obj.getA();
+
+`;

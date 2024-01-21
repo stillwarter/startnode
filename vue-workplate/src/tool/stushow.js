@@ -19,12 +19,12 @@ export function getTitleH1() {
  * 获取h2和h3
  * 目前只处理这两个吧~
  */
-export function findH() {
+export async function findH() {
   const arr = [];
   const h2dom = document.querySelectorAll("h2");
   const h3dom = document.querySelectorAll("h3");
-  addList(arr, h2dom, "h2");
-  addList(arr, h3dom, "h3");
+  await addList(arr, h2dom, "h2");
+  await addList(arr, h3dom, "h3");
 
   arr.sort((a, b) => {
     const charA = a.inner[0];
@@ -42,12 +42,59 @@ export function findH() {
   return arr;
 }
 
-function addList(arr, obj, type) {
+async function addList(arr, obj, type) {
   for (const item of obj) {
     arr.push({
       dom: item,
       inner: item.innerHTML,
       type,
+      dt: await getTopDesPromise(
+        item,
+        item.offsetHeight + item.nextSibling.offsetHeight
+      ),
+      blockheight: item.offsetHeight + item.nextSibling.offsetHeight,
     });
   }
 }
+
+/**
+ * 获取元素到顶部的距离
+ */
+export function getTopDes(dom, dt = 0) {
+  if (dom && dom != document) {
+    dt = dt + dom.offsetTop + 24 + parseInt(window.screen.height / 3);
+    console.log(dt);
+    getTopDes(dom.parentNode, Number(dt));
+  } else {
+    return dt;
+  }
+}
+
+// const getTopDesPromise = new Promise((res, rej) => {
+//   res("ok");
+// });
+
+// function getTopDesPromise(dom, dt = 0) {
+//   return new Promise((res, rej) => {
+//     if (dom && dom != document) {
+//       dt = dt + dom.offsetTop;
+//       getTopDes(dom.parentNode, callback, Number(dt));
+//     } else {
+//       return dt;
+//     }
+//   });
+// }
+
+const getTopDesPromise = (dom, dt = 0) =>
+  new Promise((res) => {
+    // if (dom && dom != document) {
+    //   dt = dt + dom.offsetTop;
+    //   res(getTopDesPromise(dom.parentNode, dt));
+    // }
+    if (dom.offsetParent) {
+      dt = dt + dom.offsetTop;
+      res(getTopDesPromise(dom.offsetParent, dt));
+    } else {
+      res(dt);
+    }
+  });
