@@ -19,7 +19,7 @@ const toH = (dom, index) => {
   });
   setTimeout(() => {
     hkey.value = index;
-  }, 300);
+  }, 800);
 };
 
 const handleScroll = () => {
