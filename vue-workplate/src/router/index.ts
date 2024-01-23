@@ -88,7 +88,14 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'DesignModule',
         name: 'DesignModule',
-        component: () => import("../view/Stu/DesignModule.vue")   
+        component: () => import("../view/Stu/DesignModule.vue"),
+        children: [
+          {
+            path:'jsoop',
+            name:'jsoop',
+            component:()=>import('../view/Stu/DesignModule/JsOOP.vue')
+          }
+        ]
       },
     ]
   },

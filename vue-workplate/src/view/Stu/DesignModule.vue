@@ -78,10 +78,12 @@ onMounted(async () => {
       <stLogQuestion
         bordercolor="#6dd5ed"
         :content="designoverview"
-        style="width: 100%;"
+        style="width: 100%"
       />
 
-      <JsOOP />
+      <!-- <JsOOP /> -->
+
+      <router-view />
 
       <!-- <singlemodule /> -->
     </div>
@@ -96,7 +98,7 @@ onMounted(async () => {
           >
             <span
               v-if="hkey == index"
-              style="color: rgb(21, 202, 49) !important;"
+              style="color: rgb(21, 202, 49) !important"
             >
               {{ item.inner }}</span
             >
@@ -105,7 +107,7 @@ onMounted(async () => {
           <p v-else class="h2p transition" @click="toH(item.dom, index)">
             <span
               v-if="hkey == index"
-              style="color: rgb(21, 202, 49) !important;"
+              style="color: rgb(21, 202, 49) !important"
             >
               {{ item.inner }}</span
             >
@@ -136,6 +138,7 @@ h1 {
   top: 0;
   position: sticky;
   height: calc(100vh - 24px);
+  overflow: auto;
   .titlelist {
     margin-left: 10px;
     margin-top: 10px;

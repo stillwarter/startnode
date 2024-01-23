@@ -7,7 +7,9 @@ const curpath = toRaw(router).currentRoute.value.fullPath;
 const meun = ref(toRaw(router).currentRoute.value.matched[0].children);
 
 const pathTo = (path) => {
-  router.push(curpath + "/" + path);
+  console.log(curpath,path);
+  
+  // router.push(curpath + "/" + path);
 };
 </script>
 
@@ -15,12 +17,19 @@ const pathTo = (path) => {
   <div class="stubox">
     <div class="leftmeun">
       <div
-        class="cursorpoint transition"
         v-for="(item, index) in meun"
         :key="index"
         @click="pathTo(item.path)"
       >
         {{ item.path }}
+        <div
+          class="cursorpoint transition"
+          v-for="(citem, cindex) in item.children"
+          :key="cindex"
+          @click="pathTo(citem.path)"
+        >
+          {{ citem.name }}
+        </div>
       </div>
     </div>
 
@@ -51,6 +60,9 @@ const pathTo = (path) => {
   }
 }
 
+.cursorpoint {
+  padding-left: 20px;
+}
 .cursorpoint:hover {
   color: aqua;
 }

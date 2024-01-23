@@ -334,3 +334,34 @@ var obj = {
 obj.getA();
 
 `;
+
+export const jsoopclosure = `
+let cache = {};
+let num = 0;
+// - (1-0)、数组 join()方法：只接收一个参数, 即用作分隔符的字符串, 然后返回
+//   包含所有数组项的字符串. 
+// - (1-1)、把参数转换成一个字符串: 比如现在 args = "3,6,9"
+let multiply = function () {
+    // - (1-0)、(1-1)
+    let args = Array.prototype.join.call(arguments, ",");
+    // - (2)、当第二次调用时 cache 下面已经保存了 {"3,6,9": 162}
+    if (cache[args]) {
+        return cache[args];
+    }
+
+    console.log(num++);
+    console.log("cache: ", cache);
+
+    let a = 1;
+    for (let i = 0, l = arguments.length; i < l; i++) {
+        a = a * arguments[i];
+    }
+    return cache[args] = a;
+};
+
+console.log(multiply(3, 6, 9)); // 162
+console.log(multiply(3, 6, 9)); // - 重复调用就会走上面的 cache 不会再重新算一遍. 
+console.log(multiply(2, 4, 5)); //
+
+console.log(multiply(3, 6, 9)); // 162
+`;
