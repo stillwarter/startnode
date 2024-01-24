@@ -1,7 +1,9 @@
 <template>
   <div>
     <workhead></workhead>
-    <router-view></router-view>
+    <div style="margin-top: 24px;">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,4 @@ import workhead from "@/view/head/base.vue";
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }
-
-
 </style>

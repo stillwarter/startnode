@@ -44,6 +44,9 @@ const setDark = () => {
   padding: 2px 10px;
   box-sizing: border-box;
   display: flex;
+  position: fixed;
+  top: 0;
+  z-index: 100;
 }
 
 .darkmoel {

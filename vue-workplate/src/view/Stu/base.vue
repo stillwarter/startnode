@@ -1,32 +1,43 @@
 <script setup>
-import { toRaw, ref } from "vue";
+import { toRaw, ref, watch } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const curpath = toRaw(router).currentRoute.value.fullPath;
 const meun = ref(toRaw(router).currentRoute.value.matched[0].children);
 
-const pathTo = (path) => {
-  console.log(curpath,path);
-  
+const pathTo = (name) => {
+  // console.log(toRaw(router).currentRoute.value);
   // router.push(curpath + "/" + path);
+  router.push({
+    name,
+  });
 };
+
+const directorykey = ref(0);
+watch(
+  () => router.currentRoute.value.path,
+  (newValue, oldValue) => {
+    directorykey.value += 1;
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
-  <div class="stubox">
+  <div class="stubox" :key="directorykey">
     <div class="leftmeun">
       <div
         v-for="(item, index) in meun"
         :key="index"
-        @click="pathTo(item.path)"
+        @click="pathTo(item.name)"
       >
         {{ item.path }}
         <div
           class="cursorpoint transition"
           v-for="(citem, cindex) in item.children"
           :key="cindex"
-          @click="pathTo(citem.path)"
+          @click.stop="pathTo(citem.name)"
         >
           {{ citem.name }}
         </div>
@@ -53,7 +64,7 @@ const pathTo = (path) => {
     padding-top: 10px;
     height: 100vh;
     position: sticky;
-    top: 0px;
+    top: 24px;
   }
   .ctx {
     padding: 20px 50px;

@@ -22,7 +22,6 @@ import {
   jsoopclosure,
 } from "../data/designmodule";
 
-
 </script>
 
 <template>

@@ -94,7 +94,12 @@ const routes: Array<RouteRecordRaw> = [
             path:'jsoop',
             name:'jsoop',
             component:()=>import('../view/Stu/DesignModule/JsOOP.vue')
-          }
+          },
+          {
+            path:'singlemodule',
+            name:'singlemodule',
+            component:()=>import('../view/Stu/DesignModule/singlemodule.vue')
+          },
         ]
       },
     ]

@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 import stLogQuestion from "@/components/Card/st-log-question.vue";
-import JsOOP from "./JsOOP/JsOOP.vue";
 import { designoverview } from "./data/base.js";
 
 import singlemodule from "./DesignModule/singlemodule.vue";
@@ -135,7 +135,7 @@ h1 {
   padding-left: 10px;
   padding-top: 10px;
   box-sizing: border-box;
-  top: 0;
+  top: 24px;
   position: sticky;
   height: calc(100vh - 24px);
   overflow: auto;
