@@ -26,3 +26,28 @@ var obj1 = new Singleton('why');
 var obj2 = new Singleton('www');
 console.log(obj1.getName());        // 输出why
 console.log(obj2.getName());        // 输出www`;
+
+export const singlemoduletrancode = `
+// 透明的单例模式
+var CreateDiv = (function(){
+  var instance = null;
+  var CreateDiv = function(html) {
+    if(instance) {
+      return instance;
+    }
+    this.html = html;
+    this.init();
+    instance = this;
+    return instance;
+  }
+  CreateDiv.prototype.init = function() {
+    var div = document.createElement('div');
+    div.innerHTML = this.html;
+    document.body.appendChild(div);
+  }
+  return CreateDiv;
+})()
+
+var instance1 = new CreateDiv('why');
+var instance2 = new CreateDiv('www');
+console.log(instance1===instance2); // 输出true`;
