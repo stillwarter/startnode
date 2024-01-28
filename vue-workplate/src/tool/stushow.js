@@ -27,9 +27,8 @@ export async function findH() {
   await addList(arr, h3dom, "h3");
 
   arr.sort((a, b) => {
-    const charA = a.inner[0];
+    const charA = Number(a.inner[0]);
     const charB = b.inner[0];
-
     if (charA < charB) {
       return -1;
     }

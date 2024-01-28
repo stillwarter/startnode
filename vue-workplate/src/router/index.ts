@@ -76,6 +76,11 @@ const routes: Array<RouteRecordRaw> = [
         name: 'fish',
         component: () => import("../view/lib/fish.vue")   
       },
+      {
+        path: 'sound',
+        name: 'sound',
+        component: () => import("../view/lib/sound/sound.vue")   
+      },
     ]
   },
 
@@ -99,6 +104,16 @@ const routes: Array<RouteRecordRaw> = [
             path:'singlemodule',
             name:'singlemodule',
             component:()=>import('../view/Stu/DesignModule/singlemodule.vue')
+          },
+          {
+            path:'strategymode',
+            name:'strategymode',
+            component:()=>import('../view/Stu/DesignModule/strategymode.vue')
+          },
+           {
+            path:'agentmode',
+            name:'agentmode',
+            component:()=>import('../view/Stu/DesignModule/agentmode.vue')
           },
         ]
       },

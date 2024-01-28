@@ -57,11 +57,6 @@ onMounted(async () => {
   directorytitle.value = h1 + "目录";
   directoryctx.value = await findH();
 
-  // getTopDes(document.querySelector("h2"));
-
-  // console.log(directoryctx.value);
-  // document.addEventListener("scroll", doScroll);
-
   // const foo = (n) =>
   //   new Promise((resolve) =>
   //     n < 3 ? setTimeout(() => ++n && resolve(foo(n)), 1000) : resolve(n)
