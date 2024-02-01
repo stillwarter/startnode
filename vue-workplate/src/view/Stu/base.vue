@@ -6,9 +6,25 @@ const router = useRouter();
 const curpath = toRaw(router).currentRoute.value.fullPath;
 const meun = ref(toRaw(router).currentRoute.value.matched[0].children);
 
-const pathTo = (name) => {
-  // console.log(toRaw(router).currentRoute.value);
-  // router.push(curpath + "/" + path);
+const showmeunindex = ref([]);
+const pathTo = (name, index) => {
+  if (index || index == 0) {
+    const i = showmeunindex.value.findIndex((item) => item === index);
+    if (i !== -1) {
+      // 存在就删除
+      console.log("存在就删除");
+      console.log(i);
+      showmeunindex.value.splice(i, 1);
+    } else {
+      // 不存在就加入
+      console.log("不存在就加入");
+      showmeunindex.value.push(index);
+    }
+
+    const set = new Set(showmeunindex.value);
+    showmeunindex.value = [...set];
+  }
+
   router.push({
     name,
   });
@@ -30,16 +46,19 @@ watch(
       <div
         v-for="(item, index) in meun"
         :key="index"
-        @click="pathTo(item.name)"
+        @click="pathTo(item.name, index)"
+        style="cursor: pointer;"
       >
         {{ item.path }}
-        <div
-          class="cursorpoint transition"
-          v-for="(citem, cindex) in item.children"
-          :key="cindex"
-          @click.stop="pathTo(citem.name)"
-        >
-          {{ citem.name }}
+        <div v-show="showmeunindex.includes(index) ? 1 : 0">
+          <div
+            class="cursorpoint transition"
+            v-for="(citem, cindex) in item.children"
+            :key="cindex"
+            @click.stop="pathTo(citem.name)"
+          >
+            {{ citem.name }}
+          </div>
         </div>
       </div>
     </div>
@@ -76,5 +95,11 @@ watch(
 }
 .cursorpoint:hover {
   color: aqua;
+}
+
+.boxtrans {
+  overflow: hidden;
+  height: 0;
+  transition: all 0.3s ease-in-out 0.2s;
 }
 </style>

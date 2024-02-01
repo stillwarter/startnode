@@ -117,6 +117,18 @@ const routes: Array<RouteRecordRaw> = [
           },
         ]
       },
+      {
+        path: 'mdn',
+        name: 'mdn',
+        component: () => import("../view/Stu/MDN.vue"),
+        children: [
+          {
+            path:'webaudio',
+            name:'webaudio',
+            component:()=>import('../view/Stu/MDN/webaudio.vue')
+          },
+        ]
+      }
     ]
   },
 
