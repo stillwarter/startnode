@@ -15,8 +15,8 @@ dependencies:
     specifier: ^4.2.0
     version: 4.2.0
   md-editor-v3:
-    specifier: ^4.10.0
-    version: 4.10.0(@codemirror/state@6.4.0)(@codemirror/view@6.23.0)(@lezer/common@1.2.0)(vue@3.3.9)
+    specifier: ^4.11.1
+    version: 4.11.1(@codemirror/state@6.4.0)(@codemirror/view@6.23.0)(@lezer/common@1.2.0)(vue@3.3.9)
   ts-md5:
     specifier: ^1.3.1
     version: 1.3.1
@@ -1097,8 +1097,8 @@ packages:
       uc.micro: 1.0.6
     dev: false
 
-  /md-editor-v3@4.10.0(@codemirror/state@6.4.0)(@codemirror/view@6.23.0)(@lezer/common@1.2.0)(vue@3.3.9):
-    resolution: {integrity: sha512-Sz9tAd6RZbc4l7Ys//GvGFX9mklk8bmQwfjbpbgMNX/4U8DkTeXpQlO8oSNzRGWE9QgZjt4ZTdxjljAIbYLdgQ==}
+  /md-editor-v3@4.11.1(@codemirror/state@6.4.0)(@codemirror/view@6.23.0)(@lezer/common@1.2.0)(vue@3.3.9):
+    resolution: {integrity: sha512-u5dScQNt7uwWEuKLEooAz7gzn+ImSv/CQy6+Uu0z1pe4unChyNBWUyKmCk1RhivqZpcBiI37Ix9jecIAEC8yyQ==}
     peerDependencies:
       vue: ^3.2.47
     dependencies:
