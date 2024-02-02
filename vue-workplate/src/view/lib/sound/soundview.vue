@@ -1,8 +1,7 @@
 <script setup>
 import { onMounted } from "vue";
-/* 获取navigator的mediaDevices */
-// mediaDevices是Navigator的只读属性，返回一个MediaDevices对象，该对象可提供对相机和麦克风等媒体输入设备的连接访问，也包括屏幕共享。
-onMounted(() => {
+
+function init() {
   if (navigator.mediaDevices === undefined) {
     navigator.mediaDevices = {};
   }
@@ -163,14 +162,13 @@ onMounted(() => {
     if (1) {
       analyser.fftSize = 2048;
       const bufferLength = analyser.fftSize;
-      console.log(bufferLength);
-
       // We can use Float32Array instead of Uint8Array if we want higher precision
       // const dataArray = new Float32Array(bufferLength);
       const dataArray = new Uint8Array(bufferLength);
 
       canvasCtx.clearRect(0, 0, WIDTH, HEIGHT);
 
+      console.log(bufferLength);
       const draw = function () {
         const drawVisual = requestAnimationFrame(draw);
 
@@ -249,12 +247,18 @@ onMounted(() => {
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
     }
   }
-});
+}
+
+/* 获取navigator的mediaDevices */
+// mediaDevices是Navigator的只读属性，返回一个MediaDevices对象，该对象可提供对相机和麦克风等媒体输入设备的连接访问，也包括屏幕共享。
+onMounted(() => {});
 </script>
 
 <template>
   <div class="combox">
-    this is soundview
+    this is soundview  <br>
+
+    <button @click="init">init</button>
 
     <canvas class="visualizer" width="640" height="100"></canvas>
   </div>
