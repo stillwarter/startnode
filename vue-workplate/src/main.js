@@ -9,7 +9,8 @@ import "./style/font.css";
 import "./style/useful.css";
 // 全部css变量
 import "./style/color.css";
+// 功能窗体css
+import "./style/func/voice.css";
 const app = createApp(App);
 // app.config.globalProperties.$Message='message';
 app.use(router).mount("#app");
-

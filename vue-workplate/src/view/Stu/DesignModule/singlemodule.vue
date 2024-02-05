@@ -4,6 +4,7 @@ import {
   singlemodulehead,
   singlemodulecode,
   singlemoduleagentcode,
+  singlemoduletrancode,
 } from "../data/singlemodule";
 
 var CreateDiv = (function () {

@@ -1,0 +1,48 @@
+/* ctx 音频图像化容器 */
+.canvasctx{
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  position: fixed;
+  top: 34px;
+  right: -200px;
+  transition: all .5s ease-in-out;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: -4px 2px 48px -10px rgba(224,45,224,0.2);
+}
+
+/* 图形化部分容器 */
+.visualizer{
+  width: 80px;
+  height: 100px;
+  position: relative;
+  border-radius: 4px 0 0 0;
+  top: 0;
+  left: 0;
+}
+
+/* 信息容器 */
+.info{
+  width: 120px;
+  background: pink;
+  height: 100px;
+  border-radius: 0 4px 0 0 ;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* 录音记录容器 */
+.word{
+  width: 100%;
+  height: 200px;
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: auto;
+  border-radius: 0 0 4px 4px;
+  font-size: 12px;
+}

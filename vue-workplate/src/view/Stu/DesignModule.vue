@@ -29,7 +29,8 @@ const handleScroll = () => {
   pagedis.value = parseInt(dis);
   // console.log(directoryctx.value[0].dt-parseInt(dis));
   // console.log(window.innerWidth);
-  if (dis < directoryctx.value[0].dt - 200) {
+  console.log();
+  if (directoryctx.value.length != 0 && dis < directoryctx.value[0].dt - 200) {
     hkey.value = 0;
     return;
   }
@@ -73,7 +74,7 @@ onMounted(async () => {
       <stLogQuestion
         bordercolor="#6dd5ed"
         :content="designoverview"
-        style="width: 100%"
+        style="width: 100%;"
       />
 
       <!-- <JsOOP /> -->
@@ -93,7 +94,7 @@ onMounted(async () => {
           >
             <span
               v-if="hkey == index"
-              style="color: rgb(21, 202, 49) !important"
+              style="color: rgb(21, 202, 49) !important;"
             >
               {{ item.inner }}</span
             >
@@ -102,7 +103,7 @@ onMounted(async () => {
           <p v-else class="h2p transition" @click="toH(item.dom, index)">
             <span
               v-if="hkey == index"
-              style="color: rgb(21, 202, 49) !important"
+              style="color: rgb(21, 202, 49) !important;"
             >
               {{ item.inner }}</span
             >

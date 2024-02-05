@@ -4,7 +4,7 @@
     <div style="margin-top: 24px;">
       <router-view></router-view>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script setup>
