@@ -1,13 +1,15 @@
 <script setup>
-import { ref,toRaw } from "vue";
+import { ref, toRaw } from "vue";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const curpath = toRaw(router).currentRoute.value.fullPath;
 const meun = ref(toRaw(router).currentRoute.value.matched[0].children);
 
-const pathTo = (path) => {
-  router.push(curpath + "/" + path);
+const pathTo = (name) => {
+  router.push({
+    name,
+  });
 };
 </script>
 
@@ -18,7 +20,7 @@ const pathTo = (path) => {
         class="cursorpoint transition"
         v-for="(item, index) in meun"
         :key="index"
-        @click="pathTo(item.path)"
+        @click="pathTo(item.name)"
       >
         {{ item.path }}
       </div>

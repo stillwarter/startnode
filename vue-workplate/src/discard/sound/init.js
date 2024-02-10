@@ -1,7 +1,4 @@
-<script setup>
-import { onMounted } from "vue";
-
-function init() {
+export function init() {
   if (navigator.mediaDevices === undefined) {
     navigator.mediaDevices = {};
   }
@@ -33,33 +30,33 @@ function init() {
   }
 
   // 通过XHR为卷积器节点抓取音轨
-  let soundSource;
-  let ajaxRequest = new XMLHttpRequest();
+  // let soundSource;
+  // let ajaxRequest = new XMLHttpRequest();
 
-  ajaxRequest.open(
-    "GET",
-    "https://mdn.github.io/voice-change-o-matic/audio/concert-crowd.ogg",
-    true
-  );
+  // ajaxRequest.open(
+  //   "GET",
+  //   "https://mdn.github.io/voice-change-o-matic/audio/concert-crowd.ogg",
+  //   true
+  // );
 
-  ajaxRequest.responseType = "arraybuffer";
+  // ajaxRequest.responseType = "arraybuffer";
 
-  ajaxRequest.onload = function () {
-    const audioData = ajaxRequest.response;
+  // ajaxRequest.onload = function () {
+  //   const audioData = ajaxRequest.response;
 
-    audioCtx.decodeAudioData(
-      audioData,
-      function (buffer) {
-        soundSource = audioCtx.createBufferSource();
-        convolver.buffer = buffer;
-      },
-      function (e) {
-        console.log("Error with decoding audio data" + e.err);
-      }
-    );
-  };
+  //   audioCtx.decodeAudioData(
+  //     audioData,
+  //     function (buffer) {
+  //       // soundSource = audioCtx.createBufferSource();
+  //       convolver.buffer = buffer;
+  //     },
+  //     function (e) {
+  //       console.log("Error with decoding audio data" + e.err);
+  //     }
+  //   );
+  // };
 
-  ajaxRequest.send();
+  // ajaxRequest.send();
 
   // 进行音频录制的主块
   let source;
@@ -89,6 +86,7 @@ function init() {
   if (navigator.mediaDevices.getUserMedia) {
     console.log("getUserMedia supported.");
     const constraints = { audio: true };
+    // const constraints =null
     navigator.mediaDevices
       .getUserMedia(constraints)
       .then(function (stream) {
@@ -97,9 +95,9 @@ function init() {
         source.connect(distortion);
         distortion.connect(biquadFilter);
         biquadFilter.connect(gainNode);
-        convolver.connect(gainNode);
+        // // convolver.connect(gainNode);
         echoDelay.placeBetween(gainNode, analyser);
-        analyser.connect(audioCtx.destination);
+        // analyser.connect(audioCtx.destination);
 
         visualize();
         //   voiceChange();
@@ -247,6 +245,7 @@ function init() {
       canvasCtx.fillRect(0, 0, WIDTH, HEIGHT);
     }
   }
+<<<<<<< HEAD:vue-workplate/src/view/lib/sound/soundview.vue
 }
 
 /* 获取navigator的mediaDevices */
@@ -269,3 +268,6 @@ onMounted(() => {});
   width: 100%;
 }
 </style>
+=======
+}
+>>>>>>> 7648b4a5c258b91fd0e2fda0729e573fa55884c8:vue-workplate/src/discard/sound/init.js

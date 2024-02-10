@@ -3,6 +3,9 @@ import { ref } from "vue";
 import stSvg from "@/components/SVG/st-svg.vue";
 import { nighticon } from "@/assets/svg/head/nighticon";
 import { homeicon } from "@/assets/svg/head/homeicon";
+import { voiceicon } from "@/assets/svg/head/voiceicon";
+
+import { VoiceCanvas } from "@/class/myVoice";
 let darkflag = ref(false);
 
 // 手动黑夜模式
@@ -23,6 +26,16 @@ const setDark = () => {
     bodydom.style = "filter: invert(0) hue-rotate(0);";
   }
 };
+
+const canvasdom = new VoiceCanvas();
+// 开启声音通道
+const startVoicePost = () => {
+  if (document.querySelector(".visualizer")) {
+    canvasdom.delDom()
+  } else {
+    canvasdom.init();
+  }
+};
 </script>
 
 <template>
@@ -32,6 +45,15 @@ const setDark = () => {
     <stSvg class="stsvg" svgsize="24" topath="home" v-html="homeicon" />
 
     <stSvg class="stsvg" svgsize="17" v-html="nighticon" @click="setDark" />
+
+    <div class="functionbox">
+      <stSvg
+        class="stsvg"
+        svgsize="24"
+        v-html="voiceicon"
+        @click="startVoicePost"
+      />
+    </div>
   </div>
 </template>
 
@@ -57,5 +79,12 @@ const setDark = () => {
   cursor: pointer;
   width: 30px;
   margin-top: 1px;
+}
+
+.functionbox {
+  position: absolute;
+  top: 0;
+  right: 10px;
+  display: flex;
 }
 </style>
