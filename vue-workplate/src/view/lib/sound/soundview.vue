@@ -256,7 +256,7 @@ onMounted(() => {});
 
 <template>
   <div class="combox">
-    this is soundview  <br>
+    this is soundview <br />
 
     <button @click="init">init</button>
 
