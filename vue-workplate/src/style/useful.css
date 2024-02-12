@@ -101,13 +101,7 @@
   transition: all .3s linear;
 }
 
-/* 常用字体color */
-.color-p1{
-  color: rgb(224, 125, 208)
-}
-.color-red{
-  color: red
-}
+
 
 .h0{
   height: 0;

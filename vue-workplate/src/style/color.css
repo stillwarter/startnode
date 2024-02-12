@@ -1,4 +1,15 @@
-:root{
+:root {
   /* ---------------------- */
-  --tag-question-color:rgba(222, 242, 240, 0.826);
+  --tag-question-color: rgba(222, 242, 240, 0.826);
+
+  /* font-color */
+  --font-color-pink1: rgb(224, 125, 208);
+}
+
+/* 常用字体color */
+.color-p1 {
+  color: var(--font-color-pink1);
+}
+.color-red {
+  color: red;
 }

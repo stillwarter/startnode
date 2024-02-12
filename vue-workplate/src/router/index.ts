@@ -115,6 +115,11 @@ const routes: Array<RouteRecordRaw> = [
             name:'agentmode',
             component:()=>import('../view/Stu/DesignModule/agentmode.vue')
           },
+          {
+            path:'iteratorsmode',
+            name:'iteratorsmode',
+            component:()=>import('../view/Stu/DesignModule/iteratorsmode.vue')
+          },
         ]
       },
       {
