@@ -153,5 +153,6 @@ createSpeechRecognition.prototype.wirteWordsCtx = function (words) {
 };
 createSpeechRecognition.prototype.recordfinish = function () {
   console.log("结束语音识别");
+  this.wordsindex = 0;
   this.recognition.stop();
 };

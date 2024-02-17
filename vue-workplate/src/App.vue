@@ -1,6 +1,7 @@
 <template>
   <div>
     <workhead></workhead>
+    <aimwork></aimwork>
     <div style="margin-top: 24px;">
       <router-view></router-view>
     </div>
@@ -9,6 +10,7 @@
 
 <script setup>
 import workhead from "@/view/head/base.vue";
+import aimwork from "@/view/aimwork/base.vue"
 </script>
 
 <style scoped>

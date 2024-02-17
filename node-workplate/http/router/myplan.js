@@ -90,6 +90,10 @@ export function readMyPlan(res, query, post, filesr, prames) {
 
   mouth > 10 ? mouth : (mouth = "0" + mouth);
   const filepath = process.cwd() + "/static/myplan/" + year + "/" + mouth;
+  // console.log(filepath);
+  if (!checkFolderPath(filepath)) {
+    generateDirectory(filepath);
+  }
   const filenamelist = readPathAllFileName(filepath);
   res.writeHead(200, {
     "Content-Type": "text/html; charset=utf-8",

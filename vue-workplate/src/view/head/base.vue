@@ -4,9 +4,22 @@ import stSvg from "@/components/SVG/st-svg.vue";
 import { nighticon } from "@/assets/svg/head/nighticon";
 import { homeicon } from "@/assets/svg/head/homeicon";
 import { voiceicon } from "@/assets/svg/head/voiceicon";
+import { middletwodiseaseswords } from "./data/middletwodiseaseswords";
 
 import { VoiceCanvas } from "@/class/myVoice";
 let darkflag = ref(false);
+
+// 抱歉我也很中二
+const refmiddletwodiseaseswords = ref(middletwodiseaseswords);
+const refmiddletwodiseasesword = ref(refmiddletwodiseaseswords.value[0]);
+let key = 0;
+setInterval(() => {
+  key++;
+  if (key >= refmiddletwodiseaseswords.value.length) {
+    key = 0;
+  }
+  refmiddletwodiseasesword.value = refmiddletwodiseaseswords.value[key];
+}, 5000);
 
 // 手动黑夜模式
 const setDark = () => {
@@ -31,7 +44,7 @@ const canvasdom = new VoiceCanvas();
 // 开启声音通道
 const startVoicePost = () => {
   if (document.querySelector(".visualizer")) {
-    canvasdom.delDom()
+    canvasdom.delDom();
   } else {
     canvasdom.init();
   }
@@ -53,6 +66,10 @@ const startVoicePost = () => {
         v-html="voiceicon"
         @click="startVoicePost"
       />
+    </div>
+
+    <div class="middletwodiseases">
+      {{ refmiddletwodiseasesword }}
     </div>
   </div>
 </template>
@@ -86,5 +103,33 @@ const startVoicePost = () => {
   top: 0;
   right: 10px;
   display: flex;
+}
+
+.middletwodiseases {
+  position: relative;
+  left: 47%;
+  transform: translateX(-50%);
+  text-align: right;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(16, 129, 144, 0.611);
+  animation: wordstans 5s ease-in-out infinite;
+}
+
+@keyframes wordstans {
+  0% {
+    opacity: 0;
+  }
+  30% {
+    opacity: 100;
+  }
+  80% {
+    opacity: 100;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>

@@ -18,7 +18,12 @@ export class FilePathModule {
 
   setPath() {
     const ypath = process.cwd() + this.aimpath + this.data.getFullYear();
-    const mpath = ypath + "/" + this.data.getMonth() + 1;
+    console.log(this.data.getMonth() + 1);
+    let mpath;
+    this.data.getMonth() + 1 < 10
+      ? (mpath = ypath + "/" + "0" + Number(this.data.getMonth() + 1))
+      : (mpath = ypath + "/" + Number(this.data.getMonth() + 1));
+    // const mpath = ypath + "/" + Number(this.data.getMonth() + 1);
 
     // 文件夹存在性判断
     checkFolderPath(ypath)
