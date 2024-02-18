@@ -120,6 +120,11 @@ const routes: Array<RouteRecordRaw> = [
             name:'iteratorsmode',
             component:()=>import('../view/Stu/DesignModule/iteratorsmode.vue')
           },
+          {
+            path:'publishsubscriptionmode',
+            name:'publishsubscriptionmode',
+            component:()=>import('../view/Stu/DesignModule/publishsubscriptionmode.vue')
+          },
         ]
       },
       {
