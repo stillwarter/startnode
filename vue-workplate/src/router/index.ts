@@ -130,6 +130,11 @@ const routes: Array<RouteRecordRaw> = [
             name:'commandmode',
             component:()=>import('../view/Stu/DesignModule/commandmode.vue')
           },
+          {
+            path:'flyweightmode',
+            name:'flyweightmode',
+            component:()=>import('../view/Stu/DesignModule/flyweightmode.vue')
+          },
         ]
       },
       {

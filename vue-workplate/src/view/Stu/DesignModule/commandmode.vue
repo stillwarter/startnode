@@ -1,10 +1,49 @@
 <script setup>
+import { onMounted } from "vue";
+import { Animate } from "@/class/Demo/stu-desigin-animate";
 import stQuote from "@/components/Card/st-quote.vue";
 import {
   commandmodehead,
   codedemo,
   codedemo2,
 } from "../data/designmode/commandmode";
+
+// 小球移动
+onMounted(() => {
+  var ball = document.getElementById("ball");
+  var pos = document.getElementById("pos");
+  var moveBtn = document.getElementById("moveBtn");
+  var cancelBtn = document.getElementById("cancelBtn");
+
+  var MoveCommand = function (receiver, pos) {
+    this.receiver = receiver;
+    this.pos = pos;
+    this.oldPos = null;
+  };
+
+  MoveCommand.prototype.execute = function () {
+    this.receiver.start("left", this.pos, 1000, "strongEaseOut");
+    this.oldPos =
+      this.receiver.dom.getBoundingClientRect()[this.receiver.propertyName];
+    // 记录小球开始移动前的位置
+  };
+
+  MoveCommand.prototype.undo = function () {
+    this.receiver.start("left", this.oldPos, 1000, "strongEaseOut");
+    // 回到小球移动前记录的位置
+  };
+
+  var moveCommand;
+  moveBtn.onclick = function () {
+    var animate = new Animate(ball);
+    moveCommand = new MoveCommand(animate, pos.value);
+    moveCommand.execute();
+  };
+  cancelBtn.onclick = function () {
+    moveCommand.undo();
+    // 撤销命令
+  };
+}); //////
 </script>
 
 <template>
@@ -68,7 +107,7 @@ import {
           <br />
           命令模式的由来，其实是回调函数的一个面向对象的替代品。
           <br />
-          js作为将函数视为一等公民（对象）的语言，和策略模式意义，命令模式也早就融入到js里。运算快不一定要封装到command.execute里，也可以封装到普通函数中。
+          js作为将函数视为一等公民（对象）的语言，和策略模式一样，命令模式也早就融入到js里。运算快不一定要封装到command.execute里，也可以封装到普通函数中。
           函数作为一等对象，本身就可用被四处传递。即使我们依然需要请求“接收者”，那也未必使用面向对象的方式，闭包同样可以完成功能。
           <br />
           在面向对象设计中，命令模式的接收者被当成command对象的属性保存起来，同时约定执行命令的操作调用command.execute方法。
@@ -77,6 +116,64 @@ import {
           <br />
           闭包实现的命令模式如下：
           <pre>{{ codedemo2 }}</pre>
+        </div>
+      </div>
+
+      <div>
+        <h3>4.撤销命令</h3>
+        <div>
+          命令模式的作用不仅是封装运算块，而且可以很方便的给命令对象增加撤销操作。就像订餐时可以通过电话取消订单一样。
+          在之前的例子里有一个animate类（对应书5.4节），现在页面有一个input文本框和一个button按钮，文本框中可以输入一些数字，表示小球引动后的水平位置。
+          我们现在加一个撤回按钮，让小球回到上一次的位置。
+          <br />
+
+          <div style="display: block">
+            <div
+              id="ball"
+              style="
+                position: relative;
+                background: #000;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+              "
+            ></div>
+
+            输入小球移动后的位置：<input id="pos" />
+            <button id="moveBtn">开始移动</button>
+            <button id="cancelBtn">cancel</button>
+          </div>
+
+          撤销是命令模式里一个非常有用的功能，试想一下开发一个围棋程序的时候，我们把每一步
+          棋子的变化都封装成命令，则可以轻而易举地实现悔棋功能。同样，撤销命令还可以用于实现文
+          本编辑器的Ctrl+Z功能。
+
+          此外重做命令也可以按这种思路来
+        </div>
+      </div>
+
+      <div>
+        <h3>5.命令队列</h3>
+        <div>
+          订餐的故事里，若订餐数量过多而厨师人手不够，则可以让订单进行排队处理。<br>
+          队列在动画的运用场景也非常多，比如用户有连续点击的习惯，当用户二次点击的时候，小球动画可能尚未结束，而用户喜欢这两个动作排队进行。
+          <br>
+          把请求封装为命令的优点再次体现出来，对象的生命周期几乎伴随页面时永久的，除非我们主动回收它。
+          <br>
+          <span class="color-red">也就是说命令对象的生命周期与初始请求发生的时间无关！</span>
+          <br>
+          这一点在本节出现过多次。命令模式我的理解就是将过程式的代码封装为一个命令函数，在需要的时候调用这个命令函数。
+          当我们不知道什么人在什么时候什么环境下调用这个命令的时候，我们就可用将命令对象先做好，等到需要的时候用。而之前
+          用闭包处理的命令对象，用书上的话说，就是保证，在任何环境下都能使命令成功运行。
+          <br>
+          我们可以将一组动画的运动过程全部封装成命令对象，然后再把他们压入一个队列栈堆里。当动画执行完后，主动通知队列并取出第一个命令对象执行。
+        </div>
+      </div>
+
+      <div>
+        <h3>6.宏命令</h3>
+        <div>
+          宏命令是命令模式和组合模式的联用产物，后续写。
         </div>
       </div>
     </div>

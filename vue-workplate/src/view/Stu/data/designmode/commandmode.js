@@ -91,4 +91,6 @@ var RefreshMenuBarCommand = function( receiver ){
  
 var refreshMenuBarCommand = RefreshMenuBarCommand( MenuBar ); 
  
-setCommand( button1, refreshMenuBarCommand );`;
+setCommand( button1, refreshMenuBarCommand );
+`;
+
