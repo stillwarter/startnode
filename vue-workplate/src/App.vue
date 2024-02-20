@@ -1,7 +1,7 @@
 <template>
   <div>
     <workhead></workhead>
-    <!-- <aimwork></aimwork> -->
+    <aimwork></aimwork>
     <div style="margin-top: 24px;">
       <router-view></router-view>
     </div>
