@@ -5,6 +5,14 @@ import {
   codedemo,
   codedemo2,
 } from "../data/designmode/publishsubscriptionmode";
+
+var a=(function(){
+    var c=0
+    var t
+    return t={c}
+})()
+// a()
+console.log(a);
 </script>
 
 <template>
@@ -65,5 +73,12 @@ import {
         <pre>{{ codedemo2 }}</pre>
       </div>
     </div>
+
+    <div>
+        <h3>5.总结</h3>
+        <div>
+           这一章说js用事件模型来替代传统的发布订阅模式，也就是说，通知的时机是由某个事件决定的。这就是v2通过getter，setter通知视图更新变量的原因。
+        </div>
+      </div>
   </div>
 </template>

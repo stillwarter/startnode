@@ -125,6 +125,11 @@ const routes: Array<RouteRecordRaw> = [
             name:'publishsubscriptionmode',
             component:()=>import('../view/Stu/DesignModule/publishsubscriptionmode.vue')
           },
+          {
+            path:'commandmode',
+            name:'commandmode',
+            component:()=>import('../view/Stu/DesignModule/commandmode.vue')
+          },
         ]
       },
       {
