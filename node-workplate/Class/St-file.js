@@ -27,10 +27,10 @@ export class FilePathModule {
 
     // 文件夹存在性判断
     checkFolderPath(ypath)
-      ? console.log("myplan-存在年份文件夹")
+      ? console.log("nodeStart-存在年份文件夹")
       : generateDirectory(ypath);
     checkFolderPath(mpath)
-      ? console.log("myplan-存在月份文件夹")
+      ? console.log("nodeStart-存在月份文件夹")
       : generateDirectory(mpath);
 
     return { ypath, mpath };

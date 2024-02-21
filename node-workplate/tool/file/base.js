@@ -34,7 +34,7 @@ export function checkFolderPath(path) {
  * （使用豆包ai生成，有改动）
  */
 export function generateDirectory(directoryPath) {
-  console.log("myplan-不在年份文件夹，生成中...");
+  console.log(`${directoryPath}-不存在年份文件夹，生成中...`);
   // 使用 fs.mkdir 方法创建目录
   fs.mkdir(directoryPath, { recursive: true }, (error) => {
     if (error) {
