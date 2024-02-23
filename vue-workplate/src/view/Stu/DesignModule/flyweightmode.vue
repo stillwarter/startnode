@@ -9,7 +9,7 @@ import { flyweightmodehead } from "../data/designmode/flyweightmode";
     <div>
       <stQuote class="mg-b10" :ctx="flyweightmodehead" />
     </div>
-
+    
     <div>
         <div>
             <h3>

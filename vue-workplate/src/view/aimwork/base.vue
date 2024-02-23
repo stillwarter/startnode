@@ -1,9 +1,25 @@
 <script setup>
+import { ref } from "vue";
+import stdialog from "@/components/Dialog/st-dialog.vue";
+
 import { todoicon2 } from "@/assets/svg/todo/todo2";
 import stSvg from "@/components/SVG/st-svg.vue";
+
 import { getTaskDay } from "@/api/task";
 
-getTaskDay()
+const dayTaskList = ref([]);
+const todayTask = ref({});
+
+const editdiaTask = ref(false);
+const ediTask = () => {
+  editdiaTask.value = true;
+};
+
+getTaskDay().then((res) => {
+  dayTaskList.value = res.data.data;
+  const key = new Date().getDay();
+  todayTask.value = dayTaskList.value[key];
+});
 </script>
 
 <template>
@@ -14,7 +30,14 @@ getTaskDay()
     </div>
     <div class="taskbox">
       宏任务和微任务
+      <div>
+        当天任务:
+        <p v-if="todayTask.length <= 1">今天没有制定任务哟</p>
+        <p @click="ediTask">add</p>
+      </div>
     </div>
+
+    <stdialog title="编辑我的日志" :show="editdiaTask"> </stdialog>
   </div>
 </template>
 

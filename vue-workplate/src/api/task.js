@@ -9,7 +9,14 @@ import request from "../tool/request";
  */
 export function getTaskDay() {
   return request({
-    url: "/mytask/getask",
+    url: "/mytask/geDaytask",
+    method: "post",
+  });
+}
+
+export function setTaskDay() {
+  return request({
+    url: "/mytask/seDaytask",
     method: "post",
   });
 }

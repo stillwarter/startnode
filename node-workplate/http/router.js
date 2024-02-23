@@ -3,7 +3,7 @@ import { test } from "./router/handlefile.js";
 import { readMyLog, addMyLog } from "./router/mylog.js";
 import { addMyPlan, readMyPlan, getMyPlanCtx } from "./router/myplan.js";
 import { postImg } from "./router/postimg.js";
-import { setask, getask } from "./router/mytask.js";
+import { setask, geDaytask } from "./router/mytask.js";
 // import
 
 // 创建路由表
@@ -21,8 +21,8 @@ let router = {
     "/myplan/addMyPlan": addMyPlan,
     "/postimg": postImg,
 
-    "/mytask/getask": getask,
-    "/mytask/setask": setask,
+    "/mytask/geDaytask": geDaytask,
+    "/mytask/seDaytask": setask,
   },
 };
 

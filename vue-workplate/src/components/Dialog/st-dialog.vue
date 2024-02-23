@@ -50,6 +50,7 @@ const sure = () => {
   position: fixed;
   background: rgba(0, 0, 0, 0.2);
   top: 0;
+  left: 0;
   backdrop-filter: blur(10px);
 }
 

@@ -24,7 +24,7 @@ const props = defineProps({
   
   .quote {
     padding: 4px;
-    white-space: pre-line;
+    white-space: pre-wrap;
     border-left: 3px solid #999;
   }
 }

@@ -51,7 +51,7 @@
       </div>
     </div>
     <div class="logcontent">
-      <p style="white-space: pre-line">
+      <p style="white-space: pre-wrap">
         {{ data?.yourlog }}
       </p>
       <div v-for="(item, index) in data?.qustinolist" :key="index">

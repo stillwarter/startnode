@@ -1,8 +1,11 @@
 import {
   checkFolderPath,
+  checkFilePresenceOne,
   generateDirectory,
   checkFilePresence,
   generateEmptyJsonFile,
+  writeToJsonFile,
+  initjsonDefault,
 } from "../../../tool/file/base.js";
 
 /**
@@ -17,12 +20,33 @@ export const CheckFile = function (defaultname) {
   const filepath = process.cwd() + `/static/${defaultname}/` + year;
   const filejsonpath =
     process.cwd() + `/static/${defaultname}/` + year + "/" + mouth + ".json";
-
+  const filejsonpathyear =
+    process.cwd() +
+    `/static/${defaultname}/` +
+    year +
+    "/" +
+    `${year}年度` +
+    ".json";
   if (!checkFolderPath(filepath)) {
     generateDirectory(filepath);
   }
 
-  if (!checkFilePresence(filejsonpath)) {
+  if (!checkFilePresenceOne(filejsonpath)) {
     generateEmptyJsonFile(filejsonpath);
+    const daytaskobj = {
+      startDate: "",
+      taskTitle: "",
+      endDate: "",
+      taskInfo: "",
+      taskFinishDeg: "",
+      taskTag: "",
+    };
+    initjsonDefault(filejsonpath, daytaskobj, mouth);
+  }
+
+  if (!checkFilePresenceOne(filejsonpathyear)) {
+    generateEmptyJsonFile(filejsonpathyear);
+    generateEmptyJsonFile(filejsonpathyear);
   }
 };
+

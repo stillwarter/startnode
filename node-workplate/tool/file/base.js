@@ -11,6 +11,11 @@ export function checkFilePresence(folderPath, fileName) {
   return fs.existsSync(filePath);
 }
 
+export function checkFilePresenceOne(filePath) {
+  // 使用 fs.existsSync 方法检测文件是否存在
+  return fs.existsSync(filePath);
+}
+
 /**
  * 检测某路径下是否存在某文件夹
  * （使用豆包ai生成）
@@ -66,7 +71,7 @@ export function generateEmptyJsonFile(filePath) {
  * json文件写入
  * （使用豆包ai生成，有改动）
  */
-function writeToJsonFile(filename, data, callback) {
+export function writeToJsonFile(filename, data, callback) {
   // 使用 fs.writeFile 方法来写入文件
   fs.writeFile(filename, data, (error) => {
     if (error) {
@@ -169,6 +174,90 @@ export function getFileContent(fileName) {
   // 文件读取完成时触发
   fileStream.on("end", () => {
     console.log("文件读取完成");
-    return content
+    return content;
   });
 }
+
+/**
+ * json空文件初始化
+ */
+export function initjsonDefault(filepath, obj = {}, mouth = 1) {
+  const aimarr = [];
+  const date = new Date();
+  const year = date.getFullYear();
+  const days = new Date(year, mouth, 0).getDate();
+  for (let index = 0; index < days; index++) {
+    aimarr.push([obj]);
+  }
+  fs.writeFile(filepath, JSON.stringify(aimarr), (error) => {
+    if (error) {
+      console.error(`目标文件生成失败: ${error}`);
+      return;
+    }
+
+    console.log(`目标文件 ${filepath} 已初始化生成`);
+  });
+}
+
+/**
+ * 下面的异步函数统一由豆包ai生成
+ */
+// 异步检查文件夹路径是否存在的函数
+export const checkFolderPathAsync = (filepath) =>
+  new Promise((resolve, reject) => {
+    fs.access(filepath, fs.constants.F_OK, (error) => {
+      if (!error) {
+        resolve(true);
+      } else {
+        reject(new Error(`文件夹路径 '${filepath}' 不存在`));
+      }
+    });
+  });
+
+// 异步生成目录的函数
+export const generateDirectoryAsync = (filepath) =>
+  new Promise((resolve, reject) => {
+    fs.mkdir(filepath, { recursive: true }, (error) => {
+      if (!error) {
+        resolve(true);
+      } else {
+        reject(new Error(`无法创建目录 '${filepath}'`));
+      }
+    });
+  });
+
+// 异步检查文件是否存在的函数
+export const checkFilePresenceOneAsync = (filejsonpath) =>
+  new Promise((resolve, reject) => {
+    fs.access(filejsonpath, fs.constants.F_OK, (error) => {
+      if (!error) {
+        resolve(true);
+      } else {
+        reject(new Error(`文件 '${filejsonpath}' 不存在`));
+      }
+    });
+  });
+
+// 异步生成空 JSON 文件的函数
+export const generateEmptyJsonFileAsync = (filejsonpath) =>
+  new Promise((resolve, reject) => {
+    fs.writeFile(filejsonpath, "{}", (error) => {
+      if (!error) {
+        resolve(true);
+      } else {
+        reject(new Error(`无法生成空 JSON 文件 '${filejsonpath}'`));
+      }
+    });
+  });
+
+// 异步初始化 JSON 文件默认值的函数
+export const initjsonDefaultAsync = (filejsonpath, daytaskobj, mouth) =>
+  new Promise((resolve, reject) => {
+    fs.writeFile(filejsonpath, JSON.stringify(daytaskobj), (error) => {
+      if (!error) {
+        resolve(true);
+      } else {
+        reject(new Error(`无法初始化 JSON 文件 '${filejsonpath}'`));
+      }
+    });
+  });

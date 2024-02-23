@@ -70,12 +70,12 @@ const iconsize = ref(50);
 <style lang="less" scoped>
 .st-work-home {
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .typewordbox {
-  max-width: 450px;
-  position: relative;
-  left: 50%;
-  transform: translateX(-50%);
+  min-width: 450px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
