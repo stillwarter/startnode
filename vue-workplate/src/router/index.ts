@@ -148,6 +148,18 @@ const routes: Array<RouteRecordRaw> = [
             component:()=>import('../view/Stu/MDN/webaudio.vue')
           },
         ]
+      },
+      {
+        path: 'Vue',
+        name: 'Vue',
+        component: () => import("../view/Stu/VUE.vue"),
+        children: [
+          {
+            path:'dostu',
+            name:'dostu',
+            component:()=>import('../view/Stu/VUE/dostu.vue')
+          },
+        ]
       }
     ]
   },
