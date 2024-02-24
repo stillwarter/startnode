@@ -45,7 +45,7 @@
     <div class="meunbox">meun(add)</div>
 
     <stdialog
-      title="编辑我的日志"
+      title="编辑我的日志222"
       :show="editdialog"
       :data="dialoglogitem"
       @sureDialog="postDialog"

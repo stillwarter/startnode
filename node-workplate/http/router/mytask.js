@@ -100,7 +100,7 @@ const CheckFile = function (defaultname) {
     `/static/${defaultname}/` +
     year +
     "/" +
-    `${year}年度` +
+    `${year}年度11` +
     ".json";
   if (!checkFolderPath(filepath)) {
     generateDirectory(filepath);
