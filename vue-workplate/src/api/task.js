@@ -14,10 +14,11 @@ export function getTaskDay() {
   });
 }
 
-export function setTaskDay() {
+export function setTaskDay(data) {
   return request({
     url: "/mytask/seDaytask",
     method: "post",
+    data,
   });
 }
 /**

@@ -23,7 +23,7 @@ const contentvalue = ref(props.contentvalue);
 //因为prop中的值非动态响应，所以需要通过watch监听，immediate 初始化时接收父组件中的传值
 watch(
   () => props.contentvalue,
-  (newval, oldval) => {
+  (newval, oldval) => {     
     contentvalue.value = props.contentvalue;
   }
 );

@@ -28,8 +28,10 @@ const setDark = () => {
   if (darkflag.value) {
     bodydom.style = "filter: invert(1) hue-rotate(180deg);";
     const styledom = document.createElement("style");
-    styledom.innerHTML =
-      "svg{filter: invert(1) hue-rotate(180deg);}img{filter: invert(1) hue-rotate(180deg);}";
+    // styledom.innerHTML =
+    //   "svg{filter: invert(1) hue-rotate(180deg);}img{filter: invert(1) hue-rotate(180deg);}";
+     styledom.innerHTML =
+      "img{filter: invert(1) hue-rotate(180deg);}";
     document.head.appendChild(styledom);
   } else {
     const styledom = document.createElement("style");

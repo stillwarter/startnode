@@ -28,15 +28,16 @@
 import fs from "node:fs";
 
 import { getFileNamePath } from "../../Class/ESMbase.js";
+
+const { __puerfilename } = getFileNamePath(import.meta.url);
 /**
  * 将每天的预定任务记录下来
  * 分为宏任务和微任务
  */
-
 export function geDaytask(res, query, post, files) {
   let logdata = "";
   // 检测是否有对应文件，没有就生成
-  const { __puerfilename } = getFileNamePath(import.meta.url);
+
   const filejsonpath = CheckFile(__puerfilename);
 
   const stream = fs.createReadStream(filejsonpath, {
@@ -72,7 +73,37 @@ export function geDaytask(res, query, post, files) {
   });
 }
 
-export function setask() {}
+/* 修改任务内容 */
+export function setDaytask(res, query, post, filesr, prames) {
+  const filejsonpath = CheckFile(__puerfilename);
+  // console.log(prames);
+  const stream = fs.createReadStream(filejsonpath, {
+    encoding: "utf-8",
+    autoClose: true,
+  });
+
+  stream.on("open", () => {
+    console.log("mylog-" + "读取文件");
+  });
+
+  stream.on("data", (chunk) => {
+    // logdata = JSON.parse(chunk);
+  });
+  stream.on("end", () => {
+    fs.writeFileSync(filejsonpath, JSON.stringify(prames));
+    stream.destroy();
+    res.writeHead(200, {
+      "Content-Type": "text/html; charset=utf-8",
+      Author: "zhangsan",
+    });
+    const response = {
+      success: true,
+      message: "日志已修改",
+    };
+    res.end(JSON.stringify(response));
+  });
+  return 1;
+}
 
 function generateCurrentMonthTask() {}
 
@@ -113,7 +144,7 @@ const CheckFile = function (defaultname) {
       taskTitle: "",
       endDate: "",
       taskInfo: "",
-      taskFinishDeg: "",
+      taskFinishDeg: 0,
       taskTag: "",
     };
     initjsonDefault(filejsonpath, daytaskobj, mouth);
