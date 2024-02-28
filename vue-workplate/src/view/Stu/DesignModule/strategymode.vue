@@ -219,4 +219,7 @@ Animate.prototype.update = function (pos) {
   justify-content: center;
   align-items: center;
 }
+pre {
+  padding-left: 10px !important;
+}
 </style>

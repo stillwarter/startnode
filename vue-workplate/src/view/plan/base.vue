@@ -19,9 +19,7 @@ getPlanList().then((res) => {
         >
       </div>
     </div>
-    <div class="mg-t30" v-else>
-      本月还没有记录哟~
-    </div>
+    <div class="mg-t30" v-else>本月还没有记录哟~</div>
 
     <div class="meunbtn">
       <router-link :to="'/planedit'">add</router-link>
@@ -42,4 +40,6 @@ getPlanList().then((res) => {
   padding: 10px;
   cursor: pointer;
 }
+
+
 </style>

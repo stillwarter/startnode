@@ -446,3 +446,9 @@ import {
   width: 100%;
 }
 </style>
+
+<style lang="less" scoped>
+pre {
+  padding-left: 10px !important;
+}
+</style>

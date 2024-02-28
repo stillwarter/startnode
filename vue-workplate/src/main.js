@@ -11,8 +11,10 @@ import "./style/useful.css";
 import "./style/color.css";
 // 功能窗体css
 import "./style/func/voice.css";
-// 手动兼容
 
 const app = createApp(App);
 // app.config.globalProperties.$Message='message';
 app.use(router).mount("#app");
+
+// 手动兼容
+import "./mixed/adapter/aimview.js"

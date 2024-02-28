@@ -2,7 +2,6 @@
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 import stLogQuestion from "@/components/Card/st-log-question.vue";
-import { designoverview } from "./data/base.js";
 
 import singlemodule from "./DesignModule/singlemodule.vue";
 import { getTitleH1, findH, getTopDes } from "@/tool/stushow.js";
@@ -29,8 +28,7 @@ const handleScroll = () => {
   pagedis.value = parseInt(dis);
   // console.log(directoryctx.value[0].dt-parseInt(dis));
   // console.log(window.innerWidth);
-  console.log();
-  if (directoryctx.value.length != 0 && dis < directoryctx.value[0].dt - 200) {
+  if (dis < directoryctx.value[0].dt - 200) {
     hkey.value = 0;
     return;
   }
@@ -70,10 +68,10 @@ onMounted(async () => {
 <template>
   <div class="directorybox">
     <div>
-      <h1>设计模式</h1>
+      <h1>React stu</h1>
       <stLogQuestion
         bordercolor="#6dd5ed"
-        :content="designoverview"
+        content="React 文档学习"
         style="width: 100%;"
       />
 
@@ -161,6 +159,4 @@ p {
 .h2p:hover {
   color: rgb(229, 46, 76);
 }
-
-
 </style>

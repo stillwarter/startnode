@@ -123,8 +123,9 @@ pre {
   margin: 0 0 1em 0;
   background: #ddd;
   border-radius: 10px 10px;
-  padding-left: 10px;
 }
+
+
 
 pre ol, pre ol li, pre ol li span {
   margin: 0 0;

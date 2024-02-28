@@ -107,8 +107,7 @@ const setClock = (key, e) => {
         dir: "ltr",
         lang: "zh-CN",
         body: "想要做的太多，会的又太少，不要摸鱼了！时间不等人哩！",
-        icon:
-          "https://file.fishpi.cn/2022/07/MOSHED2022621164630-1b1ec532.gif?imageView2/1/w/210/h/210/interlace/0/q/100",
+        icon: "https://file.fishpi.cn/2022/07/MOSHED2022621164630-1b1ec532.gif?imageView2/1/w/210/h/210/interlace/0/q/100",
       });
       // 300000
     }, 180000);
@@ -167,13 +166,11 @@ const changeTaskDom = () => {
     <div class="taskbox">
       <div>
         <div class="addtaskbox">
-          <p style="text-align: center; margin: 0; font-size: 12px;">
-            今日任务
-          </p>
+          <p style="text-align: center; margin: 0; font-size: 12px">今日任务</p>
           <stSvg
             @click="addTask"
             class="cursorpoint"
-            style="justify-content: flex-start; margin: 0 4px;"
+            style="justify-content: flex-start; margin: 0 4px"
             svgsize="15"
             v-html="addtaskicon"
           />
@@ -182,13 +179,17 @@ const changeTaskDom = () => {
           <div class="taskitem" v-for="(item, index) in todayTask" :key="index">
             <p class="title">{{ item.taskTitle || "还没有制定任务哟" }}</p>
             <p v-if="item.taskInfo" class="taskInfo">{{ item.taskInfo }}</p>
-            <p class="startime">开始时间：<span style="font-size: 10px;">{{ item.startDate }}</span></p>
+            <p class="startime">
+              开始时间：<span style="font-size: 10px">{{
+                item.startDate
+              }}</span>
+            </p>
             <p class="taskFinishDeg">完成度：{{ item.taskFinishDeg }}</p>
             <div class="handlebox">
               <stSvg
                 @click="ediTask(index)"
                 class="cursorpoint mg-r2"
-                style="justify-content: flex-start;"
+                style="justify-content: flex-start"
                 svgsize="15"
                 v-html="editicon"
               />
@@ -196,7 +197,7 @@ const changeTaskDom = () => {
                 v-if="taskClock.key != index"
                 @click="delTask(index)"
                 class="cursorpoint mg-r2"
-                style="justify-content: flex-start;"
+                style="justify-content: flex-start"
                 svgsize="15"
                 v-html="delicon"
               />
@@ -204,7 +205,7 @@ const changeTaskDom = () => {
                 v-show="item.startDate"
                 @click="finishTask(index)"
                 class="cursorpoint mg-r2"
-                style="justify-content: flex-start;"
+                style="justify-content: flex-start"
                 svgsize="15"
                 v-html="finishicon"
               />
@@ -212,7 +213,7 @@ const changeTaskDom = () => {
                 v-show="item.startDate"
                 @click="setClock(index, $event)"
                 class="cursorpoint mg-r2"
-                style="justify-content: flex-start;"
+                style="justify-content: flex-start"
                 svgsize="15"
                 v-html="clockicon"
               />
@@ -228,7 +229,7 @@ const changeTaskDom = () => {
         <stSvg
           @click="addTask"
           class="cursorpoint"
-          style="justify-content: flex-start; margin: 0 4px;"
+          style="justify-content: flex-start; margin: 0 4px"
           svgsize="15"
           v-html="addtaskicon"
         />

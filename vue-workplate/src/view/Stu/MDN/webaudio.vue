@@ -78,5 +78,7 @@ import stQuote from "@/components/Card/st-quote.vue";
 <style lang="less" scoped>
 p {
   margin: 6px 0;
+}pre {
+  padding-left: 10px !important;
 }
 </style>

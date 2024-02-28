@@ -1,5 +1,5 @@
 <script setup>
-import {ref} from "vue"
+import { ref } from "vue";
 import { MdPreview, MdCatalog } from "md-editor-v3";
 import { getMyPlanCtx } from "@/api/plan.js";
 import "md-editor-v3/lib/preview.css";
@@ -18,7 +18,7 @@ getMyPlanCtx(mdtitle).then((res) => {
   <div class="basebox flexcenter">
     <div class="prebox">
       <MdPreview
-        style="border-radius: 4px;"
+        style="border-radius: 4px"
         editorId="mypre"
         v-model="precontent"
       />
@@ -32,4 +32,5 @@ getMyPlanCtx(mdtitle).then((res) => {
   width: 80%;
   margin-top: 30px;
 }
+
 </style>

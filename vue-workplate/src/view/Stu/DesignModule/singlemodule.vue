@@ -87,4 +87,7 @@ console.log(instance1, instance2, instance1 === instance2);
 .commbox {
   width: 100%;
 }
+pre {
+  padding-left: 10px !important;
+}
 </style>
