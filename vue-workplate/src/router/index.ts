@@ -160,6 +160,30 @@ const routes: Array<RouteRecordRaw> = [
             component:()=>import('../view/Stu/VUE/dostu.vue')
           },
         ]
+      },
+      {
+        path: 'React',
+        name: 'React',
+        component: () => import("../view/Stu/React.vue"),
+        children: [
+          {
+            path:'laernReact',
+            name:'laernReact',
+            component:()=>import('../view/Stu/React/laernReact.vue')
+          },
+        ]
+      },
+      {
+        path: 'Ts',
+        name: 'Ts',
+        component: () => import("../view/Stu/Ts.vue"),
+        children: [
+          {
+            path:'ryfts',
+            name:'ryfts',
+            component:()=>import('../view/Stu/Ts/ryfTs.vue')
+          },
+        ]
       }
     ]
   },
