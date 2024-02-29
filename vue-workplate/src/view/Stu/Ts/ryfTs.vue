@@ -1,6 +1,13 @@
 <script setup>
 import stQuote from "@/components/Card/st-quote.vue";
-import {his,baseuse} from "./data/ryfts"
+import {
+  his,
+  baseuse,
+  anytype,
+  tstypesystem,
+  array,
+  tuple,
+} from "./data/ryfts";
 </script>
 
 <template>
@@ -11,15 +18,43 @@ import {his,baseuse} from "./data/ryfts"
       <div>
         <h3>0.历史</h3>
         <div>
-            在开始正式学习之前，先了解ts相关的发展历史：
-            <stQuote class="mg-b10" :ctx="his" />
+          在开始正式学习之前，先了解ts相关的发展历史：
+          <stQuote class="mg-b10" :ctx="his" />
         </div>
       </div>
 
       <div>
         <h3>1.基础用法</h3>
         <div>
-            <stQuote class="mg-b10" :ctx="baseuse" />
+          <stQuote class="mg-b10" :ctx="baseuse" />
+        </div>
+      </div>
+
+      <div>
+        <h3>2.any类型</h3>
+        <div>
+          <stQuote class="mg-b10" :ctx="anytype" />
+        </div>
+      </div>
+
+      <div>
+        <h3>3.ts类型系统</h3>
+        <div>
+          <stQuote class="mg-b10" :ctx="tstypesystem" />
+        </div>
+      </div>
+
+      <div>
+        <h3>4.ts的数组类型</h3>
+        <div>
+          <stQuote class="mg-b10" :ctx="array" />
+        </div>
+      </div>
+
+      <div>
+        <h3>5.ts的元组类型</h3>
+        <div>
+          <stQuote class="mg-b10" :ctx="tuple" />
         </div>
       </div>
     </div>
