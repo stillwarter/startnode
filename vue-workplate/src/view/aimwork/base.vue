@@ -20,18 +20,10 @@ const dayTaskList = ref([]);
 const todayTask = ref({});
 getTaskDay().then((res) => {
   dayTaskList.value = res.data.data;
-  const key = getDayInMonth();
+  const key = new Date().getDate()
   todayTask.value = dayTaskList.value[key];
 });
-function getDayInMonth() {
-  const date = new Date();
-  const day = date.getDate();
-  const firstDay = new Date(date.getFullYear(), date.getMonth(), 1);
-  const firstDayOfMonth = firstDay.getDay();
-  // 本月第一天是星期几
-  const dayOfWeek = (firstDayOfMonth + 6) % 7;
-  return day - dayOfWeek + 1;
-}
+
 
 /* 年度任务初始化 */
 
