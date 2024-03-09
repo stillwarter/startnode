@@ -305,6 +305,7 @@ const changeTaskDom = () => {
         font-size: 16px;
         color: #b917e6;
         margin: 4px 0;
+        white-space: pre-wrap;
       }
       .startime {
         font-size: 12px;

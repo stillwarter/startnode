@@ -29,7 +29,7 @@ const sure = () => {
   <transition>
     <div class="dialogmask flexcenter" v-show="show">
       <div class="mianbox">
-        <h2 class="mg-t0">{{ title }}</h2>
+        <p class="mg-t0" style="font-size: 16px;">{{ title }}</p>
         <div class="editbox">
           <slot></slot>
         </div>
