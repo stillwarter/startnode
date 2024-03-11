@@ -20,10 +20,9 @@ const dayTaskList = ref([]);
 const todayTask = ref({});
 getTaskDay().then((res) => {
   dayTaskList.value = res.data.data;
-  const key = new Date().getDate()
+  const key = new Date().getDate();
   todayTask.value = dayTaskList.value[key];
 });
-
 
 /* 年度任务初始化 */
 
