@@ -288,3 +288,17 @@ export const tuple=`5.1 简介
     let t = readonly [number,string]
     let ts=Readonly<[number,string]>
 `
+
+export const tsclass=`6.1 简介
+  
+    类（class）是面向对象编程的基本构件，封装了属性和方法，TypeScript 给予了全面支持。
+
+    6.1.1
+
+      类的属性可以声明在顶层，也可以在构造方法里声明。
+      Class Point{
+        x:number,
+        y:number
+      },
+      若不给出声明，则会认为x，y都是number
+`

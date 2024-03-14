@@ -15,6 +15,8 @@ import { getTaskDay, setTaskDay } from "@/api/task";
 import dayjs from "dayjs";
 import { showMessage } from "@/tool/message";
 
+console.log(dayjs())
+
 /* 日常任务初始化 */
 const dayTaskList = ref([]);
 const todayTask = ref({});

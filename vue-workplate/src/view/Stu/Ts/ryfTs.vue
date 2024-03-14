@@ -7,6 +7,7 @@ import {
   tstypesystem,
   array,
   tuple,
+  tsclass,
 } from "./data/ryfts";
 </script>
 
@@ -55,6 +56,13 @@ import {
         <h3>5.ts的元组类型</h3>
         <div>
           <stQuote class="mg-b10" :ctx="tuple" />
+        </div>
+      </div>
+
+      <div>
+        <h3>6.ts的类</h3>
+        <div>
+          <stQuote class="mg-b10" :ctx="tsclass" />
         </div>
       </div>
     </div>
